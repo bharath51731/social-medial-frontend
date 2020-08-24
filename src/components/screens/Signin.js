@@ -1,0 +1,94 @@
+import React ,{useState,useContext}from 'react';
+import {Link,useHistory} from 'react-router-dom';
+import M from 'materialize-css';
+import {UserContext} from '../../App';
+import { CircularProgress } from "@material-ui/core";
+import {url} from '../Url';
+const Signin = (props) =>
+{
+  const history = useHistory();
+
+ 
+  const {state,dispatch} = useContext(UserContext)
+  let [email,setEmail] = useState("");
+  let [password,setPassword] = useState("");
+  let [loading,setLoading] = useState(false);
+
+  
+  const login =  (e) =>
+  {
+    setLoading(true);
+    e.preventDefault();
+    if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email))
+    {
+      return M.toast({html: "Invalid Email",classes:"#c62828 red darken-3"})
+    }
+
+    fetch(url+"signin/",{
+    method:"post",
+    headers:{
+      "Content-Type":"application/json"
+    },
+    body: JSON.stringify({
+      email,
+      password
+    })
+  })
+  .then(res => res.json())
+  .then((data) => {
+    setLoading(false);
+    if(data.error)
+    M.toast({html: data.error,classes:"#c62828 red darken-3"})
+    else
+    {
+     localStorage.setItem("token",JSON.stringify(data.token));
+     localStorage.setItem("user",JSON.stringify(data.user))
+     dispatch({type:"USER",payload:data.user})
+    console.log("data=",data.user)
+    
+    M.toast({html: 'Signed in succesfully',classes:"#43a047 green darken-1"})
+    
+    history.push('/')
+    }
+    })
+  .catch(err =>
+    {
+      setLoading(false);
+     console.log(err)
+    })
+}
+return(
+    <div style={{marginTop:150}}>
+
+    <div className="mycard">
+    <div className="card auth-card input-field">
+      <h2>We Connect</h2>
+      <form onSubmit={(e)=>login(e)}>
+      <input
+      type="email"
+      placeholder="email"
+      required
+      onChange={(e)=>setEmail(e.target.value)}
+      />
+      <input
+      type="password"
+      required
+      placeholder="password"
+      onChange={(e)=>setPassword(e.target.value)}
+      />
+      <button style={{backgroundColor:'#64b5f6 !important'}} className="ldbtn" disabled={loading} type="submit" className="btn waves-effect waves-light #64b5f6 blue darken-1" >
+      {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <>Sign in</>}
+      </button>
+      </form>
+      <h5>
+          <Link to="/signup">Dont have an account ?</Link>
+      </h5>
+     
+
+  </div>
+</div>
+</div>
+  )
+}
+
+export default Signin;
