@@ -4,6 +4,7 @@ import {UserContext} from '../../App';
 import Loading from './Loading';
 import swal from 'sweetalert';
 import {url} from '../Url';
+import M from 'materialize-css';
 const Home = () =>
 {
   const history = useHistory();
@@ -24,7 +25,7 @@ const Home = () =>
      })
     .then(res=>res.json())
     .then(data => {
-    console.log("posts=",data)
+    
     setPosts(data.posts)
     setLoad(false);
   })
@@ -106,14 +107,17 @@ const unlikepost = (id) =>
   })
   .then(res=>res.json())
   .then(result=>{
-    //setPosts(result.message)
+    if(!result.error)
+    M.toast({html: 'Post Deleted',classes:"#43a047 green darken-1"})
     const newData = posts.filter(item=>{
       return item._id !== result._id
   })
   
   setPosts(newData)
+ 
+
   }).catch(err=>{
-      console.log(err)
+    M.toast({html: 'Something Went Wrong',classes:"#43a047 green darken-1"})
   })
     })
   }
@@ -164,7 +168,7 @@ return(
                <Link> <i style={{color:'DodgerBlue'}} className="material-icons"
                onClick={()=>unlikepost(data._id)}>thumb_up </i><p>{data.likes.length}likes</p></Link>}<br/>
           <Link to={`/viewfull/${data._id}`} class="waves-effect waves-light btn">View Comments</Link>
-         <p style={{float:'right',marginTop:20,fontFamily:"'Dancing Script', cursive"}}>Created On {data.createdOn}</p>
+         <p style={{float:'right',marginTop:20,fontFamily:"'Dancing Script', cursive"}}>{data.createdOn}</p>
       
         </div>
     </div>

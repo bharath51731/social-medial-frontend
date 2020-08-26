@@ -26,34 +26,31 @@ const Signup = () =>
     
     if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email))
       {
-        return M.toast({html: "Invalid Email",classes:"#c62828 red darken-3"})
+        return M.toast({html: "Invalid Email",classes:"#43a047 red darken-1"})
       }
 
     if(password.length <5)
     {
-      return M.toast({html: "password must be atleast 5 characters",classes:"#c62828 red darken-3"})
+      return M.toast({html: "password must be atleast 5 characters",classes:"#43a047 red darken-1"})
     }
     if(name.length <2)
     {
-     return  M.toast({html: "name must be atleast 4 characters",classes:"#c62828 red darken-3"})
+     return  M.toast({html: "name must be atleast 2 characters",classes:"#43a047 red darken-1"})
     }
     if(password !== confirmPass)
     {
-     return  M.toast({html: "password not matching",classes:"#c62828 red darken-3"})
+     return  M.toast({html: "password not matching",classes:"#43a047 red darken-1"})
     }
     setLoading(true);
 
-    fetch(`https://app.verify-email.org/api/v1/${ekey}/${email}`)
+    fetch(`https://emailverification.whoisxmlapi.com/api/v1?apiKey=${ekey}&emailAddress=${email}`)
     .then(res=>res.json())
     .then(data=>{
-
-    
-    
-
-    if(data.status === 0)
+    console.log("apidata",data)
+    if(data.dnsCheck === "false")
     {
       setLoading(false);
-      return M.toast({html: "invalid email",classes:"#c62828 red darken-3"})
+      return M.toast({html: "invalid email",classes:"#43a047 red darken-1"})
     }
     if(!image)
     {
@@ -82,7 +79,10 @@ const Signup = () =>
       }
       
       console.log("data=",data)})
-    .catch(err => setLoading(false))
+    .catch(err =>{
+       setLoading(false)
+       M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
+    })
   }
   else
 {
@@ -120,12 +120,19 @@ const Signup = () =>
             }
             
             console.log("data=",data)})
-          .catch(err => setLoading(false))
+          .catch(err => {setLoading(false)
+            M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
+          })
 
         })
-        .catch(err=>setLoading(false))
+        .catch(err=>{setLoading(false)
+          M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
+        
+        })
 }
-  }).catch(err=>setLoading(false))
+  }).catch(err=>{setLoading(false)
+    M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
+  })
 }
 
   return(

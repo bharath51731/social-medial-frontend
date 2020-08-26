@@ -125,7 +125,8 @@ return(
                 
                <Link> <i style={{color:'DodgerBlue'}} className="material-icons"
                onClick={()=>unlikepost(data._id)}>thumb_up </i><p>{data.likes.length}likes</p></Link>}<br/>
-          <Link to={`/viewfull/${data._id}`} class="waves-effect waves-light btn">View Comments</Link>
+              <p style={{float:'right',marginTop:20,fontFamily:"'Dancing Script', cursive"}}>{data.createdOn}</p>
+            <Link to={`/viewfull/${data._id}`} class="waves-effect waves-light btn">View Comments</Link>
       
         </div>
     </div>

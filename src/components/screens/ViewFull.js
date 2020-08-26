@@ -4,6 +4,7 @@ import {UserContext} from '../../App';
 import Loading from './Loading';
 import {url} from '../Url';
 import swal from 'sweetalert';
+import M from 'materialize-css';
 
 const ViewFull = () =>
 {
@@ -106,6 +107,7 @@ const fetchDetails = () =>
   {
     
     console.log(text,postId)
+    if(text.length>0)
     fetch(url+'comment',{
       method:"put",
       headers:{
@@ -155,8 +157,10 @@ const fetchDetails = () =>
   .then(res=>res.json())
   .then(result=>{
     //setPosts(result.message)
-   
+    if(!result.error)
+    M.toast({html: 'Post Deleted',classes:"#43a047 green darken-1"})
     fetchDetails()
+   
   
   }).catch(err=>{
       console.log(err)
@@ -247,13 +251,15 @@ const fetchDetails = () =>
              
                 
               }
+             
               <h4 style={{fontFamily:"'Dancing Script', cursive" }}>Comments</h4>
               <hr style={{margin:10}} />
-             
+              
+            
              {data.comments.map((cont,i)=>{
                  return(
-                    <div>
-                    <div style={{display:'flex',flexDirection:'row',marginLeft:80}}>
+                    <div >
+                    <div key={i} style={{display:'flex',flexDirection:'row',marginLeft:80}}>
                     <img style={{width:'50px',height:'50px',borderRadius:'50px'}} src={data.comments[data.comments.length-i-1].postedBy.pic} />
                      <h6 style={{justifyContent:'center',marginBottom:10,}}><span style={{fontFamily:"'Dancing Script', cursive",fontSize:25,margin:4}}> 
         
@@ -272,16 +278,18 @@ const fetchDetails = () =>
                      <hr style={{width:800,float:'left',marginLeft:20}} /><br/>
                     </div>
                  )
+                 
+                
+                 
              })}
+            
            
                             
                         
                               
               
              
-             
-             
-       </div> : null}
+         </div> : null}
        </div>
 }</>
     )

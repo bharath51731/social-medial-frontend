@@ -16,6 +16,10 @@ const UserProfile = () =>
   const [load,setLoad]= useState(true);
   const [fload,setFload] = useState(false)
   const [uload,setUload] = useState(false)
+  const [list,setList] = useState(null)
+  const [followers,setFollowers] = useState([])
+
+
   
   const {id} = useParams()
 
@@ -34,18 +38,17 @@ const fetchPosts = () =>
     )
     .then(res=>res.json())
     .then(data => {
-    
-      setLoad(false);
+    console.log("data=",data)
+    setLoad(false);
     if(data.user == null)
     {
     setFetch(true)
     return setData(null);
     }
-
-     setFetch(true)
+      setFetch(true)
       setData(data)
       
-    }
+      }
     )
     .catch(err=>setLoad(false))
   }
@@ -116,9 +119,10 @@ const fetchPosts = () =>
        </div>
         <div >
         <h4 style={{fontFamily:"'Dancing Script', 'cursive'"}}>{data.user.name}</h4>
-      <h6>{data.user.email}</h6>
+        <h6>{data.user.email}</h6>
      
       {!data.user.followers.includes(state._id) ?
+     
       <button disabled={fload} style={{
                        margin:"10px"
                    }} className="btn waves-effect waves-light #64b5f6 blue darken-1"
@@ -131,14 +135,16 @@ const fetchPosts = () =>
                        margin:"10px"
                    }} className="btn waves-effect waves-light #64b5f6 blue darken-1"
                     onClick={()=>unfollowuser()}>
-                      {uload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <> UNFOLLOW</>}
+                      {uload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <> UN FOLLOW</>}
                       </button>}
                     
         
         <div style={{display:"flex",justifyContent:"space-between",width:"108%"}}>
            <h6>{data.user.followers.length} followers</h6>
            <h6>{data.user.following.length} following</h6>
-          {!data.user.followers.includes(state._id)?<h6>{data.posts.length} posts</h6>:<Link to={`/myposts/${data.user._id}`}><h6>{data.posts.length} posts</h6></Link>} 
+          {!data.user.followers.includes(state._id)?<h6>{data.posts.length} posts</h6>:
+
+                  data.posts.length > 0 ?  <Link to={`/myposts/${data.user._id}`}><h6>{data.posts.length} posts</h6></Link> : <h6>{data.posts.length} Posts</h6>} 
           {/* <Link to={`/myposts/${data.user._id}`}><h6>{data.posts.length} posts</h6></Link> */}
         </div>
        </div>

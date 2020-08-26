@@ -28,7 +28,7 @@ const CreatePost = () =>
 
     const postDetails = ()=>{
       if(!title && !image && !body)
-      return  M.toast({html: "please fill atleast one feild",classes:"#c62828 red darken-3"})
+      return  M.toast({html: "please fill atleast one feild",classes:"#43a047 red darken-1"})
         const data = new FormData()
         data.append("file",image)
         data.append("upload_preset","social-app")
@@ -61,11 +61,11 @@ const CreatePost = () =>
                 setLoading(false);
                    if(data.error)
                    {
-                     M.toast({html: data.error,classes:"#c62828 red darken-3"})
+                     M.toast({html: data.error,classes:"#43a047 red darken-1"})
                    }
                    else
                    {
-                     M.toast({html: 'Post created Succesfully',classes:"#43a047 green darken-1"})
+                     M.toast({html: 'Post created',classes:"#43a047 green darken-1"})
                    }
                  console.log(data)
                  })
@@ -73,7 +73,7 @@ const CreatePost = () =>
             else
             {
               setLoading(false);
-            M.toast({html: "something went wrong",classes:"#c62828 red darken-3"})
+            M.toast({html: "something went wrong",classes:"#43a047 red darken-1"})
             }
              
      
@@ -81,7 +81,7 @@ const CreatePost = () =>
         })
         .catch(err=>{
           setLoading(false);
-            
+          M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
         })
         else
 
@@ -110,7 +110,10 @@ const CreatePost = () =>
               }
             console.log(data)
             })
-            .catch(err => setLoading(false))
+            .catch(err => { 
+              setLoading(false)
+              M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
+            })
 
     }
    

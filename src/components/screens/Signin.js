@@ -38,7 +38,7 @@ const Signin = (props) =>
   .then((data) => {
     setLoading(false);
     if(data.error)
-    M.toast({html: data.error,classes:"#c62828 red darken-3"})
+    M.toast({html: data.error,classes:"#43a047 red darken-1"})
     else
     {
      localStorage.setItem("token",JSON.stringify(data.token));
@@ -46,7 +46,7 @@ const Signin = (props) =>
      dispatch({type:"USER",payload:data.user})
     console.log("data=",data.user)
     
-    M.toast({html: 'Signed in succesfully',classes:"#43a047 green darken-1"})
+    M.toast({html: 'successfully Signed',classes:"#43a047 green darken-1"})
     
     history.push('/')
     }
@@ -54,7 +54,7 @@ const Signin = (props) =>
   .catch(err =>
     {
       setLoading(false);
-     console.log(err)
+      M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
     })
 }
 return(
@@ -83,6 +83,9 @@ return(
       <h5>
           <Link to="/signup">Dont have an account ?</Link>
       </h5>
+      <h6>
+                <Link to="/reset">Forgot password ?</Link>
+      </h6>
      
 
   </div>

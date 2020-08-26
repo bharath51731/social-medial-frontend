@@ -13,6 +13,7 @@ import Myposts from './components/screens/Mypots';
 import ViewFull from './components/screens/ViewFull';
 import {reducer, initialState} from './reducer/userReducer';
 import './components/screens/Header.css';
+import Reset from './components/screens/Reset';
 export const UserContext = createContext();
 
 const Routing = () =>{
@@ -42,6 +43,7 @@ const Routing = () =>{
    <Route exact path="/myfollowing" component={Myfollowings} />
    <Route exact path="/myposts/:id" component={Myposts} />
    <Route exact path="/viewfull/:id" component={ViewFull} />
+   <Route path="/reset" component={Reset} />
 </Switch>
   )
 }

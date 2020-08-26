@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+import Modal from './Modal';
+import Modal1 from './Modal';
 ReactDOM.render(
   <React.StrictMode>
     <App />

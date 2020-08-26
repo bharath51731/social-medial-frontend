@@ -4,6 +4,7 @@ import {UserContext} from '../../App';
 import swal from 'sweetalert';
 import Loading from './Loading';
 import {url} from '../Url';
+import M from 'materialize-css';
 
 const Myposts = () =>
 {
@@ -121,6 +122,8 @@ const Myposts = () =>
   .then(res=>res.json())
   .then(result=>{
     //setPosts(result.message)
+  if(!result.error)
+ M.toast({html: 'Post Deleted',classes:"#43a047 green darken-1"})
     const newData = posts.filter(item=>{
       return item._id !== result._id
   })
@@ -182,6 +185,8 @@ const Myposts = () =>
                  </div>
                  <br/>
                   <Link to={`/viewfull/${data._id}`} class="waves-effect waves-light btn">View Comments</Link>
+                  <p style={{float:'right',marginTop:20,fontFamily:"'Dancing Script', cursive"}}>{data.createdOn}</p>
+
                 
                 </div>
             </div>
