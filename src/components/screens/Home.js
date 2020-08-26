@@ -49,7 +49,7 @@ const likepost = (id) =>
     })
     .then(res=>res.json())
     .then(data =>{
-         console.log(data)
+         
         const newData = posts.map(item=>{
           if(item._id==data._id)
           return data
@@ -147,7 +147,7 @@ return(
                     >clear</i></Link>
                     : null}
         <div style={{ display: 'flex'}}>
-        <img  style={{width:'50px',height:'50px',borderRadius:'50px',backgroundColor:'black',marginTop:6}} src={data.postedBy.pic} />
+        <img  style={{width:'50px',height:'50px',borderRadius:'50px',backgroundColor:'black',marginTop:6,marginLeft:5}} src={data.postedBy.pic} />
         <Link to={data.postedBy._id !== state._id?"/profile/"+data.postedBy._id :"/profile"  }><h5 style={{fontFamily:"'Dancing Script', cursive",marginLeft:6}}>{data.postedBy.name}</h5></Link></div>
         
        <hr />
@@ -167,7 +167,7 @@ return(
                 
                <Link> <i style={{color:'DodgerBlue'}} className="material-icons"
                onClick={()=>unlikepost(data._id)}>thumb_up </i><p>{data.likes.length}likes</p></Link>}<br/>
-          <Link to={`/viewfull/${data._id}`} class="waves-effect waves-light btn">View Comments</Link>
+          <Link to={`/viewfull/${data._id}`} class="waves-effect waves-light btn">View Comments({data.comments.length})</Link>
          <p style={{float:'right',marginTop:20,fontFamily:"'Dancing Script', cursive"}}>{data.createdOn}</p>
       
         </div>

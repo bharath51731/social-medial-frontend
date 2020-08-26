@@ -96,7 +96,7 @@ const fetchres= () =>
     )
     .then(res=>res.json())
     .then(data => {
-      console.log(data)
+      
       setLoad(false);
       setPosts(data.mypost)
       setuser(data.user)
@@ -174,7 +174,7 @@ const fetchres= () =>
           .then(data => {
             setiLoad(false)
             fetchres()
-          console.log("data=",data)})
+          })
           .catch(err =>{ setiLoad(false)
             M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
           })
@@ -200,7 +200,7 @@ const fetchres= () =>
     .then(data => {
       setriLoad(false)
       fetchres()
-    console.log("data=",data)})
+    })
     .catch(err => {
       setriLoad(false)
       M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
@@ -286,7 +286,7 @@ if(willDelete)
 const setFollowers = () =>
 {
 if(user.followers.length >0)
-setOpen(true)
+ setOpen(true)
 setHeading("Followers")
 setList(user.followers)
 }
@@ -362,7 +362,7 @@ setList(user.following)
 
       <input
       type="password"
-      placeholder="old Password"
+      placeholder="Old Password"
       value={pass}
       onChange={(e)=>setPass(e.target.value)}
       required />
@@ -409,6 +409,8 @@ setList(user.following)
                </>
                )
              })   : null}
+             
+             
           </Typography>
         </DialogContent>
       </Dialog>

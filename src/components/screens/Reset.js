@@ -3,17 +3,25 @@ import M from 'materialize-css';
 import {url} from '../Url';
 import {ekey} from '../Keys';
 import { CircularProgress } from "@material-ui/core";
+import {useHistory} from 'react-router-dom';
 
 const Reset = () =>
-{
+{    
+    const history = useHistory();
     const [email,setEmail] = useState("");
     let [loading,setLoading] = useState(false);
+
+    
+  if(localStorage.getItem("token") && localStorage.getItem("user"))
+  {
+   history.push('/');
+  }
 
     const reset = () =>
     {
         if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email))
       {
-        return M.toast({html: "Invalid Email",classes:"#c62828 red darken-3"})
+        return M.toast({html: "Invalid Email",classes:"#43a047 red darken-1"})
       }
       setLoading(true);
       

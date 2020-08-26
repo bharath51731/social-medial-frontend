@@ -38,7 +38,7 @@ const fetchPosts = () =>
     )
     .then(res=>res.json())
     .then(data => {
-    console.log("data=",data)
+    
     setLoad(false);
     if(data.user == null)
     {
@@ -135,7 +135,7 @@ const fetchPosts = () =>
                        margin:"10px"
                    }} className="btn waves-effect waves-light #64b5f6 blue darken-1"
                     onClick={()=>unfollowuser()}>
-                      {uload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <> UN FOLLOW</>}
+                      {uload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <> UNFOLLOW</>}
                       </button>}
                     
         

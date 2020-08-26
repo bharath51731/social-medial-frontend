@@ -46,7 +46,7 @@ const Signup = () =>
     fetch(`https://emailverification.whoisxmlapi.com/api/v1?apiKey=${ekey}&emailAddress=${email}`)
     .then(res=>res.json())
     .then(data=>{
-    console.log("apidata",data)
+    
     if(data.dnsCheck === "false")
     {
       setLoading(false);
@@ -78,7 +78,7 @@ const Signup = () =>
       history.push('/signin')
       }
       
-      console.log("data=",data)})
+      })
     .catch(err =>{
        setLoading(false)
        M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
@@ -119,7 +119,7 @@ const Signup = () =>
             history.push('/signin')
             }
             
-            console.log("data=",data)})
+           })
           .catch(err => {setLoading(false)
             M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
           })
@@ -143,27 +143,27 @@ const Signup = () =>
       <form onSubmit={(e)=>create(e)}>
       <input
       type="text"
-      placeholder="name"
+      placeholder="Name"
       value={name}
       onChange={(e)=>setName(e.target.value)}
       />
       <input
       type="email"
-      placeholder="email"
+      placeholder="Email address"
       required
       value={email}
       onChange={(e)=>setEmail(e.target.value)}
       />
       <input
       type="password"
-      placeholder="password"
+      placeholder="Password"
       required
       value={password}
       onChange={(e)=>setPassword(e.target.value)}
       />
        <input
       type="password"
-      placeholder="Confirm password"
+      placeholder="Confirm Password"
       required
       value={confirmPass}
       onChange={(e)=>setConfirm(e.target.value)}

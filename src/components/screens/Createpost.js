@@ -67,7 +67,7 @@ const CreatePost = () =>
                    {
                      M.toast({html: 'Post created',classes:"#43a047 green darken-1"})
                    }
-                 console.log(data)
+                 
                  })
                  .catch(err => setLoading(false))
             else
@@ -108,7 +108,7 @@ const CreatePost = () =>
               {
                 M.toast({html: 'Post created Succesfully',classes:"#43a047 green darken-1"})
               }
-            console.log(data)
+            
             })
             .catch(err => { 
               setLoading(false)
@@ -141,12 +141,12 @@ const style = {
             width:'720px'}}>
             <input 
             type="text"
-            placeholder="title"
+            placeholder="Title"
             value={title}
             onChange={(e)=>setTitle(e.target.value)}
              /><br/><br/>
 
-            <textarea style={style} onChange={(e)=>setBody(e.target.value)} placeholder="Write Here">
+            <textarea style={style} onChange={(e)=>setBody(e.target.value)} placeholder="Body">
                 {body}
             </textarea>
               

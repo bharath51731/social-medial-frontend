@@ -50,12 +50,12 @@ const fetchUsers = (query) =>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger" style={{color:colour}}><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
        <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>
-      <li><Link style={{color:colour}} to="/profile">Profile</Link></li>
-      <li><Link style={{color:colour}} to="/createpost">Create Post</Link></li>
-      <li><Link style={{color:colour}} to="/myfollowing">Following Posts</Link></li>
+      <li key="2"><Link style={{color:colour}} to="/profile">Profile</Link></li>
+      <li key="3"><Link style={{color:colour}} to="/createpost">Create Post</Link></li>
+      <li key="4"><Link style={{color:colour}} to="/myfollowing">Followings Posts</Link></li>
       {/* <li><Link to="/myposts">My Posts</Link></li> */}
       {/* <li><Link to={`/myposts/${state ? state._id : null}`}>My posts</Link></li> */}
-      <li><Link
+      <li key="5"><Link
       style={{color:colour}}
        onClick={(e)=>{
       e.preventDefault()
@@ -69,12 +69,12 @@ const fetchUsers = (query) =>
 
       <ul class="sidenav" id="mobile-demo" ref={side}>
       <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black",fontSize:20,marginLeft:20,marginTop:30}}>search</i></li>
-      <li><Link to="/profile">Profile</Link></li>
-      <li><Link to="/createpost">Create Post</Link></li>
-      <li><Link to="/myfollowing">Following Posts</Link></li>
+      <li key="2"><Link to="/profile">Profile</Link></li>
+      <li key="3"><Link to="/createpost">Create Post</Link></li>
+      <li key="4"><Link to="/myfollowing">Followings Posts</Link></li>
       {/* <li><Link to="/myposts">My Posts</Link></li> */}
      {/* <li><Link to={`/myposts/${state ? state._id : null}`}>My posts</Link></li> */}
-      <li><Link onClick={(e)=>{
+      <li key="5"><Link onClick={(e)=>{
       e.preventDefault()
        localStorage.clear()
        dispatch({type:'CLEAR'})
@@ -93,14 +93,14 @@ const fetchUsers = (query) =>
       <Link style={{color:colour}} className="brand-logo" to="/">We Connect</Link>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger" style={{color:colour}}><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down" >
-      <li ><Link style={{color:colour}} to={state ? "/" :"/signin"}>Sign in</Link></li>
-      <li><Link style={{color:colour}} to="/signup">Sign up</Link></li>
+      <li key="1" ><Link style={{color:colour}} to={state ? "/" :"/signin"}>Sign in</Link></li>
+      <li key="2"><Link style={{color:colour}} to="/signup">Sign up</Link></li>
       </ul>
       </div>
       </nav>
       <ul class="sidenav" id="mobile-demo" ref={side}>
-      <li><Link  to={state ? "/" :"/signin"}>Sign in</Link></li>
-      <li><Link  to="/signup">Sign up</Link></li>
+      <li key="1"><Link  to={state ? "/" :"/signin"}>Sign in</Link></li>
+      <li key="2"><Link  to="/signup">Sign up</Link></li>
       </ul>
       </>
      ]
@@ -115,7 +115,7 @@ const fetchUsers = (query) =>
           <div className="modal-content">
           <input
             type="text"
-            placeholder="search users by email or name"
+            placeholder="Search users by email or name"
             value={search}
             onChange={(e)=>fetchUsers(e.target.value)}
             />
@@ -129,7 +129,7 @@ const fetchUsers = (query) =>
                    {/* <li className="collection-item" style={{color:'black'}}> */}
                    <div style={{display:'flex',flexDirection:'row'}}>
                    <img style={{borderRadius:'40px',width:'40px',height:'40px'}} src={item.pic}/>
-                   <p style={{marginBottom:4}}>{item.name}</p>
+                   <span style={{marginTop:6,marginLeft:6}}>{item.name}</span>
                    <hr />
                    </div>
                   

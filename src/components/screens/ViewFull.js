@@ -61,7 +61,7 @@ const fetchDetails = () =>
     .then(res=>res.json())
     .then(data =>
        {
-         console.log(data)
+        
         // const newData = data.map(item=>{
         //   if(item._id==data._id)
         //   return data
@@ -106,7 +106,7 @@ const fetchDetails = () =>
   const makeComment = (text,postId) =>
   {
     
-    console.log(text,postId)
+    
     if(text.length>0)
     fetch(url+'comment',{
       method:"put",
@@ -120,7 +120,7 @@ const fetchDetails = () =>
       })
   }).then(res=>res.json())
   .then(result=>{
-      console.log(result)
+      
     //   const newData = data.map(item=>{
     //     if(item._id==result._id){
     //         return result
@@ -238,7 +238,7 @@ const fetchDetails = () =>
                    makeComment(e.target[0].value,data._id)
                    e.target[0].value=""
                    }}>
-                  <input type="text" placeholder="add a comment" /> 
+                  <input type="text" placeholder="Add a comment" /> 
                   <button type="submit" class="btn waves-effect waves-light" type="submit" name="action">
                     Comment
                       <i class="material-icons right">send</i>
@@ -252,7 +252,7 @@ const fetchDetails = () =>
                 
               }
              
-              <h4 style={{fontFamily:"'Dancing Script', cursive" }}>Comments</h4>
+            <h4 style={{fontFamily:"'Dancing Script', cursive" }}>Comments({data.comments.length})</h4>
               <hr style={{margin:10}} />
               
             
@@ -271,9 +271,9 @@ const fetchDetails = () =>
                                     }} 
                                     onClick={()=>deletecomment(data.comments[data.comments.length-i-1],data._id)}
                                     >clear</i> : null}
-                     </span><br/><> {data.comments[data.comments.length-i-1].text}
+                     </span><br/><span style={{marginLeft:5,marginTop:4}}> {data.comments[data.comments.length-i-1].text}
                      
-                     </></h6>
+                     </span></h6>
                      </div>
                      <hr style={{width:800,float:'left',marginLeft:20}} /><br/>
                     </div>

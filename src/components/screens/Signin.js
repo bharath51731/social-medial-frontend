@@ -44,9 +44,9 @@ const Signin = (props) =>
      localStorage.setItem("token",JSON.stringify(data.token));
      localStorage.setItem("user",JSON.stringify(data.user))
      dispatch({type:"USER",payload:data.user})
-    console.log("data=",data.user)
     
-    M.toast({html: 'successfully Signed',classes:"#43a047 green darken-1"})
+    
+    M.toast({html: 'successfully Signed in',classes:"#43a047 green darken-1"})
     
     history.push('/')
     }
@@ -66,14 +66,14 @@ return(
       <form onSubmit={(e)=>login(e)}>
       <input
       type="email"
-      placeholder="email"
+      placeholder="Email address"
       required
       onChange={(e)=>setEmail(e.target.value)}
       />
       <input
       type="password"
       required
-      placeholder="password"
+      placeholder="Password"
       onChange={(e)=>setPassword(e.target.value)}
       />
       <button style={{backgroundColor:'#64b5f6 !important'}} className="ldbtn" disabled={loading} type="submit" className="btn waves-effect waves-light #64b5f6 blue darken-1" >
