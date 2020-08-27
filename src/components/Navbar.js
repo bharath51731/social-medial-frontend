@@ -10,6 +10,12 @@ const colour = "black";
 const Navbar = () =>
 {
   const history = useHistory();
+
+  // if(!localStorage.getItem("token") || !localStorage.getItem("user"))
+  // {
+  //    history.push('/signin')
+  // }  
+
   const {state,dispatch} = useContext(UserContext)
   const  searchModal = useRef(null)
   const  side = useRef(null)
@@ -44,7 +50,7 @@ const fetchUsers = (query) =>
    {
      return[
        <>
-         <nav style={{backgroundColor:'white'}}>
+         <nav style={{backgroundColor:'white',width:'100'}}>
       <div class="nav-wrapper"  >
       <Link style={{color:colour}} className="brand-logo" to="/">We Connect</Link>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger" style={{color:colour}}><i class="material-icons">menu</i></a>
@@ -58,7 +64,7 @@ const fetchUsers = (query) =>
       <li key="5"><Link
       style={{color:colour}}
        onClick={(e)=>{
-      e.preventDefault()
+      //e.preventDefault()
        localStorage.clear()
        dispatch({type:'CLEAR'})
        history.push('/signin')
@@ -75,7 +81,7 @@ const fetchUsers = (query) =>
       {/* <li><Link to="/myposts">My Posts</Link></li> */}
      {/* <li><Link to={`/myposts/${state ? state._id : null}`}>My posts</Link></li> */}
       <li key="5"><Link onClick={(e)=>{
-      e.preventDefault()
+      //e.preventDefault()
        localStorage.clear()
        dispatch({type:'CLEAR'})
        history.push('/signin')
@@ -120,14 +126,15 @@ const fetchUsers = (query) =>
             onChange={(e)=>fetchUsers(e.target.value)}
             />
 
-            {userDetails.length>0? <ul  style={{color:'black'}}>
+          {localStorage.getItem("user") && localStorage.getItem("token") ? <> {userDetails.length>0? <ul  style={{color:'black'}}>
                {userDetails.map(item=>{
-                 return <Link to={item._id !== state._id ? "/profile/"+item._id:'/profile'} onClick={()=>{
+                 return <Link to={item._id !== state._id ? "/profile/"+item._id:'/profile'} onClick={(e)=>{
+                  //  e.preventDefault()
                    M.Modal.getInstance(searchModal.current).close()
                    setSearch('')
                  }}>
                    {/* <li className="collection-item" style={{color:'black'}}> */}
-                   <div style={{display:'flex',flexDirection:'row'}}>
+                   <div style={{display:'flex',flexDirection:'row',marginTop:5}}>
                    <img style={{borderRadius:'40px',width:'40px',height:'40px'}} src={item.pic}/>
                    <span style={{marginTop:6,marginLeft:6}}>{item.name}</span>
                    <hr />
@@ -140,10 +147,17 @@ const fetchUsers = (query) =>
                })}
                
                
-              </ul> : null}
+              </ul> : null}</> : null }
           </div>
           <div className="modal-footer">
-            <button className="modal-close   btn-flat" onClick={()=>setSearch('')} >close</button>
+            <button className="modal-close   btn-flat" 
+            onClick={(e)=>{
+              //e.preventDefault()
+              setSearch('')
+              M.Modal.getInstance(searchModal.current).close()
+            }} 
+            >
+              close</button>
           </div>
         </div>
        {/* <Load /> */}

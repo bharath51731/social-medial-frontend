@@ -328,6 +328,18 @@ setList(user.following)
          </div>
        </div>
       </div>
+      {/* <div className="gallery">
+               {
+                   posts.map((item,i)=>{
+                       return(
+                        <img key={i} className="item" src={item.photo} alt={item.title}/>  
+                       )
+                   })
+               }
+          
+           
+           </div>
+           <hr /> */}
       <h3>Update Profile</h3>
         <input
       type="text"
@@ -416,6 +428,7 @@ setList(user.following)
       </Dialog>
     </div>
 </div>
+
 }</>
   )
 }

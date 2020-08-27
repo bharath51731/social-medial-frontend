@@ -149,7 +149,17 @@ const fetchPosts = () =>
         </div>
        </div>
       </div>
-
+      
+      {/* <div className="gallery" style={{marginTop:10}}>
+               {
+                  data.posts.map((item,i)=>{
+                       return(
+                        <img key={i} className="item" src={item.photo} alt={item.title}/>  
+                       )
+                   })
+               }
+          
+      </div> */}
       
      
      </div>
