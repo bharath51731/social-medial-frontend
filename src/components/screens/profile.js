@@ -278,7 +278,7 @@ if(willDelete)
        })
        .catch(err=>{
         setdelLoad(false)
-         M.toast({html: 'error',classes:"#43a047 red darken-1"})
+        //  M.toast({html: 'error',classes:"#43a047 red darken-1"})
        })
       }
       })
