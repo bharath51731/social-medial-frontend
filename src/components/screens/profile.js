@@ -272,9 +272,9 @@ if(willDelete)
             {
             M.toast({html: 'Account Deleted',classes:"#43a047 green darken-1"})
             localStorage.clear()
-            dispatch({type:"USER",payload:null})
             history.push('/signin')
-            }
+            dispatch({type:"USER",payload:null})
+           }
        })
        .catch(err=>{
         setdelLoad(false)
