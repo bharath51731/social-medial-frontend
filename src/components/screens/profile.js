@@ -272,8 +272,8 @@ if(willDelete)
             {
             M.toast({html: 'Account Deleted',classes:"#43a047 green darken-1"})
             localStorage.clear()
-            history.push('/signin')
             dispatch({type:"USER",payload:null})
+            history.push('/signin')
            }
        })
        .catch(err=>{
@@ -409,7 +409,7 @@ setList(user.following)
           <Typography >
           
              {/* <div style={{backgroundColor:'black',width:'50px !important',heught:'50px !important',borderRadius:'50% !important'}}>1</div> */}
-             { user ? list.map((data,i)=>{
+             {localStorage.getItem("user") && localStorage.getItem("token") ? <>   { user ? list.map((data,i)=>{
 
                return(
                  <>
@@ -420,7 +420,7 @@ setList(user.following)
                </div>
                </>
                )
-             })   : null}
+             })   : null} </> : null}
              
              
           </Typography>
