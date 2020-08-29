@@ -278,7 +278,6 @@ if(willDelete)
        })
        .catch(err=>{
         setdelLoad(false)
-        //  M.toast({html: 'error',classes:"#43a047 red darken-1"})
        })
       }
       })
@@ -324,22 +323,9 @@ setList(user.following)
           {user ?<Link> <h6 onClick={()=>setFollowers()} >{ user.followers.length} followers</h6></Link> : null}
           {user ? <Link><h6 onClick={()=>setFollowings()}>{ user.following.length} following</h6> </Link>: null}
           {user ? posts.length > 0 ? <h6><Link to={`/myposts/${user._id}`}>{posts.length} posts</Link></h6>: <h6>{posts.length} posts</h6>: null}
-          {/* {posts.length > 0 ? <Link to={`/myposts/${user._id}`}><h6>{posts?posts.length:"0"} posts</h6></Link> : "0" } */}
-         </div>
+        </div>
        </div>
       </div>
-      {/* <div className="gallery">
-               {
-                   posts.map((item,i)=>{
-                       return(
-                        <img key={i} className="item" src={item.photo} alt={item.title}/>  
-                       )
-                   })
-               }
-          
-           
-           </div>
-           <hr /> */}
       <h3>Update Profile</h3>
         <input
       type="text"
@@ -407,9 +393,7 @@ setList(user.following)
         </DialogTitle>
         <DialogContent dividers>
           <Typography >
-          
-             {/* <div style={{backgroundColor:'black',width:'50px !important',heught:'50px !important',borderRadius:'50% !important'}}>1</div> */}
-             {localStorage.getItem("user") && localStorage.getItem("token") ? <>   { user ? list.map((data,i)=>{
+        {localStorage.getItem("user") && localStorage.getItem("token") ? <>   { user ? list.map((data,i)=>{
 
                return(
                  <>
@@ -421,9 +405,7 @@ setList(user.following)
                </>
                )
              })   : null} </> : null}
-             
-             
-          </Typography>
+        </Typography>
         </DialogContent>
       </Dialog>
     </div>

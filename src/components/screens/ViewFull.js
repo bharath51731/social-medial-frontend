@@ -38,7 +38,6 @@ const fetchDetails = () =>
     .then(data => {
       setLoad(false);
       setData(data.posts[0])
-    //   setPosts(data.posts)
     })
     .catch(err=>setLoad(false))
     }
@@ -62,12 +61,6 @@ const fetchDetails = () =>
     .then(data =>
        {
         
-        // const newData = data.map(item=>{
-        //   if(item._id==data._id)
-        //   return data
-        //   else
-        //   return item
-        // })
         fetchDetails()
 
         
@@ -90,12 +83,7 @@ const fetchDetails = () =>
     .then(res=>res.json())
     .then(data =>
       {
-    //    const newData = data.map(item=>{
-    //      if(item._id==data._id)
-    //      return data
-    //      else
-    //      return item
-    //    })
+
        fetchDetails()
 
        
@@ -120,14 +108,6 @@ const fetchDetails = () =>
       })
   }).then(res=>res.json())
   .then(result=>{
-      
-    //   const newData = data.map(item=>{
-    //     if(item._id==result._id){
-    //         return result
-    //     }else{
-    //         return item
-    //     }
-    //  })
      fetchDetails()
     
   }).catch(err=>{
@@ -156,7 +136,7 @@ const fetchDetails = () =>
   })
   .then(res=>res.json())
   .then(result=>{
-    //setPosts(result.message)
+   
     if(!result.error)
     M.toast({html: 'Post Deleted',classes:"#43a047 green darken-1"})
     fetchDetails()
@@ -299,26 +279,3 @@ export default ViewFull;
 
 
 
-// {data.comments.map((cont,i)=>{
-//   return(
-//      <div>
-//      <div style={{display:'flex',flexDirection:'row',marginLeft:80}}>
-//      <img style={{width:'50px',height:'50px',borderRadius:'50px'}} src={cont.postedBy.pic} />
-//       <h6 style={{justifyContent:'center',marginBottom:10,}}><span style={{fontFamily:"'Dancing Script', cursive",fontSize:25,margin:4}}> 
-
-//       {cont.postedBy.name}
-//       {state._id == cont.postedBy._id ? <i className="material-icons" style={{
-//                          float:"right",
-//                          margin:5,
-//                          color:'grey'
-//                      }} 
-//                      onClick={()=>deletecomment(cont,data._id)}
-//                      >clear</i> : null}
-//       </span><br/><> {cont.text}
-      
-//       </></h6>
-//       </div>
-//       <hr style={{width:800,float:'left',marginLeft:20}} /><br/>
-//      </div>
-//   )
-// })}

@@ -121,9 +121,8 @@ const Myposts = () =>
   })
   .then(res=>res.json())
   .then(result=>{
-    //setPosts(result.message)
   if(!result.error)
- M.toast({html: 'Post Deleted',classes:"#43a047 green darken-1"})
+  M.toast({html: 'Post Deleted',classes:"#43a047 green darken-1"})
     const newData = posts.filter(item=>{
       return item._id !== result._id
   })
@@ -135,9 +134,7 @@ const Myposts = () =>
 });
   }
 
-  
-
-  return(
+return(
     <>
     {load ? <Loading /> :
     <div> 
@@ -194,10 +191,7 @@ const Myposts = () =>
            
               })
             }
-           
-           
-           
-     </div> : null}
+           </div> : null}
      </div> 
 }</>
   )

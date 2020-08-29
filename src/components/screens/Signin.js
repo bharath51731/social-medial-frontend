@@ -7,8 +7,6 @@ import {url} from '../Url';
 const Signin = (props) =>
 {
   const history = useHistory();
-
- 
   const {state,dispatch} = useContext(UserContext)
   let [email,setEmail] = useState("");
   let [password,setPassword] = useState("");
@@ -84,11 +82,9 @@ return(
           <Link to="/signup">Dont have an account ?</Link>
       </h5>
       <h6>
-                <Link to="/reset">Forgot password ?</Link>
+    <Link to="/reset">Forgot password ?</Link>
       </h6>
-     
-
-  </div>
+</div>
 </div>
 </div>
   )

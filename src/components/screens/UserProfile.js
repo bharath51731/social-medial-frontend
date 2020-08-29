@@ -18,9 +18,6 @@ const UserProfile = () =>
   const [uload,setUload] = useState(false)
   const [list,setList] = useState(null)
   const [followers,setFollowers] = useState([])
-
-
-  
   const {id} = useParams()
 
   if(!localStorage.getItem("token") || !localStorage.getItem("user"))
@@ -143,13 +140,11 @@ const fetchPosts = () =>
            <h6>{data.user.followers.length} followers</h6>
            <h6>{data.user.following.length} following</h6>
           {!data.user.followers.includes(state._id)?<h6>{data.posts.length} posts</h6>:
-
-                  data.posts.length > 0 ?  <Link to={`/myposts/${data.user._id}`}><h6>{data.posts.length} posts</h6></Link> : <h6>{data.posts.length} Posts</h6>} 
-          {/* <Link to={`/myposts/${data.user._id}`}><h6>{data.posts.length} posts</h6></Link> */}
-        </div>
-       </div>
-      </div>
-      {/* <hr /> */}
+           data.posts.length > 0 ?  <Link to={`/myposts/${data.user._id}`}><h6>{data.posts.length} posts</h6></Link> : <h6>{data.posts.length} Posts</h6>} 
+         </div>
+    </div>
+    </div>
+     
       <div className="gallery" style={{marginTop:10}}>
                {
                   data.posts.map((item,i)=>{
@@ -158,11 +153,8 @@ const fetchPosts = () =>
                        )
                    })
                }
-          
       </div>
-      
-     
-     </div>
+      </div>
      : null}
      </>
 }</>

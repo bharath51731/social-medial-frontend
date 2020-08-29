@@ -28,6 +28,7 @@ const Home = () =>
     
     setPosts(data.posts)
     setLoad(false);
+    
   })
     .catch(err=>{setLoad(false)})}
     

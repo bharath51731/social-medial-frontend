@@ -6,7 +6,6 @@ import { CircularProgress } from "@material-ui/core";
 import {url as u} from '../Url';
 import {ckey} from '../Keys';
 
-// import '../../App.css';
 
 const CreatePost = () =>
 {
@@ -17,11 +16,7 @@ const CreatePost = () =>
     const [url,setUrl] = useState("");
     let [loading,setLoading] = useState(false);
 
-    
-    // useEffect(()=>{
-      
-    // },[url]);
-    if(!localStorage.getItem("token") || !localStorage.getItem("user"))
+  if(!localStorage.getItem("token") || !localStorage.getItem("user"))
   {
    history.push('/signin');
   }
@@ -116,13 +111,7 @@ const CreatePost = () =>
             })
 
     }
-   
-
-// if(!localStorage.getItem("token") || !localStorage.getItem("user"))
-//   {
-//    history.push('/signin');
-   
-//   }
+    
 const style = {
     resize:'none',
     padding:'9px',

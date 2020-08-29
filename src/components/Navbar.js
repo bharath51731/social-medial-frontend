@@ -9,13 +9,7 @@ import {url} from './Url';
 const colour = "black";
 const Navbar = () =>
 {
-  const history = useHistory();
-
-  // if(!localStorage.getItem("token") || !localStorage.getItem("user"))
-  // {
-  //    history.push('/signin')
-  // }  
-
+  const history = useHistory(); 
   const {state,dispatch} = useContext(UserContext)
   const  searchModal = useRef(null)
   const  side = useRef(null)
@@ -59,16 +53,14 @@ const fetchUsers = (query) =>
       <li key="2"><Link style={{color:colour}} to="/profile">Profile</Link></li>
       <li key="3"><Link style={{color:colour}} to="/createpost">Create Post</Link></li>
       <li key="4"><Link style={{color:colour}} to="/myfollowing">Followings Posts</Link></li>
-      {/* <li><Link to="/myposts">My Posts</Link></li> */}
-      {/* <li><Link to={`/myposts/${state ? state._id : null}`}>My posts</Link></li> */}
+      <button className="btn waves-effect waves-light #64b5f6 red darken-1" style={{margin:4,color:'white'}} >
       <li key="5"><Link
       style={{color:colour}}
-       onClick={(e)=>{
-      //e.preventDefault()
+       onClick={()=>{
        localStorage.clear()
        dispatch({type:'CLEAR'})
        history.push('/signin')
-      }}>Log Out</Link></li>
+      }}>Log Out</Link></li> </button>
       </ul>
       </div>
       </nav>
@@ -78,14 +70,12 @@ const fetchUsers = (query) =>
       <li key="2"><Link to="/profile">Profile</Link></li>
       <li key="3"><Link to="/createpost">Create Post</Link></li>
       <li key="4"><Link to="/myfollowing">Followings Posts</Link></li>
-      {/* <li><Link to="/myposts">My Posts</Link></li> */}
-     {/* <li><Link to={`/myposts/${state ? state._id : null}`}>My posts</Link></li> */}
-      <li key="5"><Link onClick={(e)=>{
-      //e.preventDefault()
+     <button className="btn waves-effect waves-light #64b5f6 red darken-1" style={{margin:4,color:'white',marginLeft:30}} >
+      <li key="5"><Link onClick={()=>{
        localStorage.clear()
        dispatch({type:'CLEAR'})
        history.push('/signin')
-      }}>Log Out</Link></li>
+      }}>Log Out</Link></li></button>
       </ul>
       </>
      ]
@@ -133,14 +123,11 @@ const fetchUsers = (query) =>
                    M.Modal.getInstance(searchModal.current).close()
                    setSearch('')
                  }}>
-                   {/* <li className="collection-item" style={{color:'black'}}> */}
                    <div style={{display:'flex',flexDirection:'row',marginTop:5}}>
                    <img style={{borderRadius:'40px',width:'40px',height:'40px'}} src={item.pic}/>
                    <span style={{marginTop:6,marginLeft:6}}>{item.name}</span>
                    <hr />
                    </div>
-                  
-                   {/* </li> */}
                    </Link> 
                    
               
@@ -152,7 +139,7 @@ const fetchUsers = (query) =>
           <div className="modal-footer">
             <button className="modal-close   btn-flat" 
             onClick={(e)=>{
-              //e.preventDefault()
+              
               setSearch('')
               M.Modal.getInstance(searchModal.current).close()
             }} 
@@ -160,11 +147,10 @@ const fetchUsers = (query) =>
               close</button>
           </div>
         </div>
-       {/* <Load /> */}
+      
       </div>
     )
 }
 export default Navbar;
 
-// #F08080
 

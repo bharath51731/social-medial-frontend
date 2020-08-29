@@ -187,9 +187,7 @@ const Signup = () =>
       </form>
       
           <Link to="/signin"><h5>Already have an account ?</h5></Link>
-     
-
-  </div>
+</div>
 </div>
 </div>
   )
