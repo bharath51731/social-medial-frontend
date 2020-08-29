@@ -53,14 +53,18 @@ const fetchUsers = (query) =>
       <li key="2"><Link style={{color:colour}} to="/profile">Profile</Link></li>
       <li key="3"><Link style={{color:colour}} to="/createpost">Create Post</Link></li>
       <li key="4"><Link style={{color:colour}} to="/myfollowing">Followings Posts</Link></li>
+      
+      <li key="5">
       <button className="btn waves-effect waves-light #64b5f6 red darken-1" style={{margin:4,color:'white'}} >
-      <li key="5"><Link
-      style={{color:colour}}
+        <Link
+        style={{color:'white'}}
        onClick={()=>{
        localStorage.clear()
        dispatch({type:'CLEAR'})
        history.push('/signin')
-      }}>Log Out</Link></li> </button>
+      }}>Log Out</Link>
+      </button>
+      </li> 
       </ul>
       </div>
       </nav>
@@ -70,12 +74,18 @@ const fetchUsers = (query) =>
       <li key="2"><Link to="/profile">Profile</Link></li>
       <li key="3"><Link to="/createpost">Create Post</Link></li>
       <li key="4"><Link to="/myfollowing">Followings Posts</Link></li>
-     <button className="btn waves-effect waves-light #64b5f6 red darken-1" style={{margin:4,color:'white',marginLeft:30}} >
-      <li key="5"><Link onClick={()=>{
+     
+      <li key="5">
+      <button className="btn waves-effect waves-light #64b5f6 red darken-1" style={{margin:4,color:'white',marginLeft:30}} >
+        <Link 
+      style={{color:'white'}}
+       onClick={()=>{
        localStorage.clear()
        dispatch({type:'CLEAR'})
        history.push('/signin')
-      }}>Log Out</Link></li></button>
+      }}>Log Out</Link>
+      </button>
+      </li>
       </ul>
       </>
      ]
