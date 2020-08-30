@@ -3,6 +3,7 @@ import {useHistory,Link} from 'react-router-dom';
 import {UserContext} from '../../App';
 import Loading from './Loading';
 import {url} from '../Url';
+import swal from 'sweetalert';
 
 const Myfollowings = () =>
 {
