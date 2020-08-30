@@ -25,7 +25,8 @@ const Home = () =>
      })
     .then(res=>res.json())
     .then(data => {
-    
+    if(data.posts.length == 0)
+    swal('NO POSTS')
     setPosts(data.posts)
     setLoad(false);
     

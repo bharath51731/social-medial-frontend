@@ -6,7 +6,9 @@ import '../App.css';
 import M from 'materialize-css';
 import {url} from './Url';
 
-const colour = "black";
+const colour = "white";
+const navcolor= "#1e90ff";
+
 const Navbar = () =>
 {
   const history = useHistory(); 
@@ -44,12 +46,12 @@ const fetchUsers = (query) =>
    {
      return[
        <>
-         <nav style={{backgroundColor:'white',width:'100'}}>
+         <nav style={{backgroundColor:navcolor,width:'100'}}>
       <div class="nav-wrapper"  >
       <Link style={{color:colour}} className="brand-logo" to="/">We Connect</Link>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger" style={{color:colour}}><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-       <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>
+       <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:colour}}>search</i></li>
       <li key="2"><Link style={{color:colour}} to="/profile">Profile</Link></li>
       <li key="3"><Link style={{color:colour}} to="/createpost">Create Post</Link></li>
       <li key="4"><Link style={{color:colour}} to="/myfollowing">Followings Posts</Link></li>
@@ -70,7 +72,7 @@ const fetchUsers = (query) =>
       </nav>
 
       <ul class="sidenav" id="mobile-demo" ref={side}>
-      <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black",fontSize:20,marginLeft:20,marginTop:30}}>search</i></li>
+      <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black",fontSize:20,marginLeft:30,marginTop:30}}>search</i></li>
       <li key="2"><Link to="/profile">Profile</Link></li>
       <li key="3"><Link to="/createpost">Create Post</Link></li>
       <li key="4"><Link to="/myfollowing">Followings Posts</Link></li>
@@ -94,7 +96,7 @@ const fetchUsers = (query) =>
    {
      return[
        <>
-       <nav style={{width:'100',backgroundColor:'white'}}>
+       <nav style={{width:'100',backgroundColor:navcolor}}>
       <div class="nav-wrapper" style={{color:'black !important'}} >
       <Link style={{color:colour}} className="brand-logo" to="/">We Connect</Link>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger" style={{color:colour}}><i class="material-icons">menu</i></a>

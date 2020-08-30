@@ -25,8 +25,10 @@ if(!localStorage.getItem("token") || !localStorage.getItem("user"))
      })
     .then(res=>res.json())
     .then(data => {
-      setLoad(false);
+      if(data.posts.length == 0)
+        swal('NO POSTS')
       setPosts(data.posts)
+      setLoad(false);
     })
     .catch(err=>setLoad(false))
   }
