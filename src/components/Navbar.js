@@ -6,8 +6,10 @@ import '../App.css';
 import M from 'materialize-css';
 import {url} from './Url';
 
-const colour = "white";
-const navcolor= "#1e90ff";
+const colour = "black";
+const navcolor= "white";
+// const colour = "white";
+// const navcolor= "#1e90ff";
 
 const Navbar = () =>
 {

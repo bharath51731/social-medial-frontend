@@ -145,7 +145,7 @@ const fetchPosts = () =>
     </div>
     </div>
      
-      <div className="gallery" style={{marginTop:10}}>
+      {/* <div className="gallery" style={{marginTop:10}}>
                {
                   data.posts.map((item,i)=>{
                        return(
@@ -153,7 +153,7 @@ const fetchPosts = () =>
                        )
                    })
                }
-      </div>
+      </div> */}
       </div>
      : null}
      </>
