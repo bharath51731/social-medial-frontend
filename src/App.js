@@ -14,6 +14,7 @@ import ViewFull from './components/screens/ViewFull';
 import {reducer, initialState} from './reducer/userReducer';
 import './components/screens/Header.css';
 import Reset from './components/screens/Reset';
+import Newpass from './components/screens/Newpass';
 export const UserContext = createContext();
 
 const Routing = () =>{
@@ -27,6 +28,7 @@ const Routing = () =>{
     }
     else
     {
+      if(!history.location.pathname.startsWith('/reset') && !history.location.pathname.startsWith('/newpass'))
       history.push('/signin')
     }
     
@@ -43,6 +45,7 @@ const Routing = () =>{
    <Route exact path="/myposts/:id" component={Myposts} />
    <Route exact path="/viewfull/:id" component={ViewFull} />
    <Route path="/reset" component={Reset} />
+   <Route path="/newpass/:token" component={Newpass} />
 </Switch>
   )
 }
