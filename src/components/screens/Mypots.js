@@ -181,7 +181,7 @@ return(
                  onClick={()=>unlikepost(data._id)}>thumb_up </i><p>{data.likes.length}likes</p></Link>}
                  </div>
                  <br/>
-                  <Link to={`/viewfull/${data._id}`} class="waves-effect waves-light btn">View Comments({data.comments.length})</Link>
+                  <Link to={`/viewfull/${data._id}`} class="waves-effect waves-light btn">View Comments ({data.comments.length})</Link>
                   <p style={{float:'right',marginTop:20,fontFamily:"'Dancing Script', cursive"}}>{data.createdOn}</p>
 
                 

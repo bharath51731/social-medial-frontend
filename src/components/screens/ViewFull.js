@@ -148,7 +148,7 @@ const fetchDetails = () =>
 })
   }
 
-  const deletecomment = (comment,pid) =>
+  const deletecomment = (cid,pid) =>
   {
       
     
@@ -159,7 +159,7 @@ const fetchDetails = () =>
           "Authorization":"Bearer "+JSON.parse(localStorage.getItem("token"))
       },
       body:JSON.stringify({
-        comment,
+        cid,
         pid
       })
   })
@@ -249,13 +249,14 @@ const fetchDetails = () =>
                                         margin:5,
                                         color:'grey'
                                     }} 
-                                    onClick={()=>deletecomment(data.comments[data.comments.length-i-1],data._id)}
+                                    onClick={()=>deletecomment(data.comments[data.comments.length-i-1]._id,data._id)}
                                     >clear</i> : null}
                      </span><br/><span style={{marginLeft:5,marginTop:4}}> {data.comments[data.comments.length-i-1].text}
                      
                      </span></h6>
                      </div>
-                     <hr style={{width:800,float:'left',marginLeft:20}} /><br/>
+                     {/* <hr style={{width:800,float:'left',marginLeft:20}} /><br/> */}
+                     <hr style={{margin:20}} /><br/>
                     </div>
                  )
                  
