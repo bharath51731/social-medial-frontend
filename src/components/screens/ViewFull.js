@@ -256,7 +256,7 @@ const fetchDetails = () =>
                      </span></h6>
                      </div>
                      {/* <hr style={{width:800,float:'left',marginLeft:20}} /><br/> */}
-                     <hr style={{margin:20}} />
+                     <hr style={{marginLeft:20,marginRight:20}} />
                     </div>
                  )
                  
