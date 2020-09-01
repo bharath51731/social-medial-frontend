@@ -1,3 +1,2 @@
-
-export const ekey = "at_8y5DPOO3OogTVFoRqq0OEBovLK016";
-export const ckey = "dnvgajic2";
+export const ekey = process.env.REACT_APP_SECRET_EKEY
+export const ckey = process.env.REACT_APP_SECRET_CKEY
