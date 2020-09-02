@@ -105,15 +105,17 @@ return(
     
       posts.map((data,i)=>{
         return(
-        <div key={i} className="card home-card" style={{borderRadius:'20px',width:'600px'}}>
-          
+        <div key={i} className="card home-card" style={{minWidth:'520px',borderRadius:8}}>
+           <Link to={data.postedBy._id !== state._id?"/profile/"+data.postedBy._id :"/profile"  }>
         <div style={{ display: 'flex'}}>
+       
         <img  style={{width:'50px',height:'50px',borderRadius:'50px',backgroundColor:'black',marginTop:6,marginLeft:5}} src={data.postedBy.pic} />
-        <Link to={data.postedBy._id !== state._id?"/profile/"+data.postedBy._id :"/profile"  }><h5 style={{fontFamily:"'Dancing Script', cursive",marginLeft:6}} >{data.postedBy.name}</h5></Link></div>
+       <h5 style={{fontFamily:"'Dancing Script', cursive",marginLeft:6}} >{data.postedBy.name}</h5></div></Link>
         
-       <hr />
+       
+       {data.photo == "" ? <hr /> : null } 
 
-        <div className="card-image" style={{padding:0,margin:0}}>
+        <div className="card-image" style={{padding:0,marginTop:8}}>
           <img src={data.photo} />
         </div>
         <div className="card-content">            

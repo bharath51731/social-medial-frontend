@@ -183,7 +183,7 @@ const Signup = () =>
              </div>
 
       <button type="submit" disabled={loading} className="btn waves-effect waves-light #64b5f6 blue darken-1" >
-      {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <>Sign Up</>}
+      {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Sign Up</>}
       </button>
       </form>
       

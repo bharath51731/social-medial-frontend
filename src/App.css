@@ -76,10 +76,7 @@ input[type=password]:focus {
   box-shadow: 0 1px 0 0 rgb(8, 93, 252)  !important;
 }
 
-textarea:focus {
-  border: 1px solid rgb(8, 93, 252) !important;
-  box-shadow: 0 1px 0 0 rgb(8, 93, 252)  !important;
-}
+
 
 .collection-item{
   width: 100%;
@@ -115,5 +112,14 @@ button[disabled]{
   
   background-color:#64b5f6 !important;
   
+}
+
+/* textarea:focus {
+    outline: none !important;
+    border:1px ;
+    box-shadow: 10 10 10px #719ECE;
+} */
+textarea {
+  outline-color: #1E88E5;
 }
 

@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 import Loading from './Loading';
 import {url} from '../Url';
 import M from 'materialize-css';
+import { CircularProgress } from "@material-ui/core";
 
 const Myposts = () =>
 {
@@ -19,6 +20,7 @@ const Myposts = () =>
   let [posts,setPosts] = useState([]);
   const {state,dispatch} = useContext(UserContext);
   const [load,setLoad]= useState(true);
+  const [delload,setDelload] = useState(false);
   const fetchPosts = () =>
   {
     fetch(url+"myallpost/",
@@ -134,18 +136,72 @@ const Myposts = () =>
 });
   }
 
+  const deleteAllPost = () =>
+  {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover ",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+    if(willDelete)
+    {
+      setDelload(true);
+    
+    fetch(url+`deleteAllPost/`,{
+      method:"delete",
+      headers:{
+          "Authorization":"Bearer "+JSON.parse(localStorage.getItem("token"))
+      },
+  })
+  .then(res=>res.json())
+  .then(result=>{
+  if(!result.error)
+  {
+   M.toast({html: 'All Post Deleted',classes:"#43a047 green darken-1"})
+   history.push('/');
+  }
+  else
+  {
+    M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
+  }
+  setDelload(false);
+ 
+  }).catch(err=>{
+    M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
+    setDelload(false);
+      console.log(err)
+  })
+}
+})
+.catch(err=> console.log(err));
+    
+  }
+
 return(
     <>
     {load ? <Loading /> :
     <div> 
+       <div style={{float:'right'}}>
+       {state._id === id ?  <button className="btn waves-effect waves-light #64b5f6 red darken-1" style={{margin:4,color:'white'}} 
+       disabled={delload}
+       onClick={()=>deleteAllPost()}
+       >
+       {delload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Delete All Posts</>}
+       
+       </button> : null}
+        </div>
       {
         posts ?
+       
       <div className="Home">
 
             {
               posts.map((data,i)=>{
                 return(
-                <div key={i} className="card home-card" style={{borderRadius:'20px',width:'600px'}}>
+                <div key={i} className="card home-card" style={{minWidth:'520px',borderRadius:8}} >
                    {state._id === data.postedBy._id ? 
                <Link> <i className="material-icons" style={{
                                 float:"right",
@@ -155,13 +211,16 @@ return(
                             onClick={()=>deletepost(data._id)}
                             >clear</i></Link>
                             : null}
+                             <Link to={data.postedBy._id !== state._id?"/profile/"+data.postedBy._id :"/profile"  }>
                 <div style={{ display: 'flex'}}>
+               
                 <img  style={{width:'50px',height:'50px',borderRadius:'50px',backgroundColor:'black',marginTop:6,marginLeft:5}} src={data.postedBy.pic} />
-                <Link to={data.postedBy._id !== state._id?"/profile/"+data.postedBy._id :"/profile"  }><h5 style={{fontFamily:"'Dancing Script', cursive",marginLeft:6}}>{data.postedBy.name}</h5></Link></div>
+                <h5 style={{fontFamily:"'Dancing Script', cursive",marginLeft:6}}>{data.postedBy.name}</h5></div></Link>
                 
-               <hr />
+              
+               {data.photo == "" ? <hr /> : null } 
 
-                <div className="card-image" style={{padding:0,margin:0}}>
+                <div className="card-image" style={{padding:0,marginTop:8}}>
                   <img src={data.photo} />
                 </div>
                 <div className="card-content">

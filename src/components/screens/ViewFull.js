@@ -138,8 +138,11 @@ const fetchDetails = () =>
   .then(result=>{
    
     if(!result.error)
+    {
     M.toast({html: 'Post Deleted',classes:"#43a047 green darken-1"})
-    fetchDetails()
+    // fetchDetails()
+    history.push('/');
+    }
    
   
   }).catch(err=>{
@@ -151,7 +154,16 @@ const fetchDetails = () =>
   const deletecomment = (cid,pid) =>
   {
       
-    
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover ",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+
+    if(willDelete)
     fetch(url+`deletecomment`,{
       method:"delete",
       headers:{
@@ -166,9 +178,12 @@ const fetchDetails = () =>
   .then(res=>res.json())
   .then(result=>{
     fetchDetails()
+    M.toast({html: 'Comment Deleted',classes:"#43a047 green darken-1"})
 }).catch(err=>{
     console.log(err)
 })
+    })
+    .catch(err=>console.log(err))
 }
     return(
       <>
@@ -181,7 +196,7 @@ const fetchDetails = () =>
               {
                 
                   
-                  <div  className="card home-card" style={{borderRadius:'20px',width:'600px'}}>
+                  <div  className="card home-card" style={{minWidth:'550px',borderRadius:8}} >
                      {state._id === data.postedBy._id ? 
                  <Link> <i className="material-icons" style={{
                                   float:"right",
@@ -192,12 +207,13 @@ const fetchDetails = () =>
                               >clear</i></Link>
                               : null}
                   <div style={{ display: 'flex'}}>
-                  <img  style={{width:'50px',height:'50px',borderRadius:'50px',backgroundColor:'black',marginTop:6}} src={data.postedBy.pic} />
+                  <img  style={{width:'50px',height:'50px',borderRadius:'50px',backgroundColor:'black',marginTop:6,marginLeft:5}} src={data.postedBy.pic} />
                   <Link to={data.postedBy._id !== state._id?"/profile/"+data.postedBy._id :"/profile"  }><h5 style={{fontFamily:"'Dancing Script', cursive",marginLeft:6}}>{data.postedBy.name}</h5></Link></div>
                   
-                 <hr />
+                  {data.photo == "" ? <hr /> : null } 
+
   
-                  <div className="card-image" style={{padding:0,margin:0}}>
+                  <div className="card-image" style={{padding:0,marginTop:8}}>
                     <img src={data.photo} />
                   </div>
                   <div className="card-content">
@@ -218,7 +234,7 @@ const fetchDetails = () =>
                    makeComment(e.target[0].value,data._id)
                    e.target[0].value=""
                    }}>
-                  <input type="text" placeholder="Add a comment" /> 
+                  <input type="text" placeholder="Add a comment" required /> 
                   <button type="submit" class="btn waves-effect waves-light" type="submit" name="action">
                     Comment
                       <i class="material-icons right">send</i>
@@ -235,34 +251,36 @@ const fetchDetails = () =>
             <h4 style={{fontFamily:"'Dancing Script', cursive" }}>Comments({data.comments.length})</h4>
               <hr style={{margin:10}} />
               
-            
+            <div style={{float:'left'}}>
              {data.comments.map((cont,i)=>{
                  return(
-                    <div >
-                    <div key={i} style={{display:'flex',flexDirection:'row',marginLeft:80}}>
-                    <img style={{width:'50px',height:'50px',borderRadius:'50px'}} src={data.comments[data.comments.length-i-1].postedBy.pic} />
-                     <h6 style={{justifyContent:'center',marginBottom:10,}}><span style={{fontFamily:"'Dancing Script', cursive",fontSize:25,margin:4}}> 
-        
-                    <Link to={data.comments[data.comments.length-i-1].postedBy._id !== state._id?"/profile/"+data.comments[data.comments.length-i-1].postedBy._id :"/profile"  }> {data.comments[data.comments.length-i-1].postedBy.name} </Link>
-                     {state._id == data.comments[data.comments.length-i-1].postedBy._id ? <i className="material-icons" style={{
+                  <div key={i} className="card " style={{minWidth:'600px',maxWidth:'600px',marginLeft:40,borderRadius:10}}  >
+                    {state._id == data.comments[data.comments.length-i-1].postedBy._id ? <i className="material-icons" style={{
                                         float:"right",
                                         margin:5,
                                         color:'grey'
                                     }} 
                                     onClick={()=>deletecomment(data.comments[data.comments.length-i-1]._id,data._id)}
                                     >clear</i> : null}
-                     </span><br/><span style={{marginLeft:5,marginTop:4}}> {data.comments[data.comments.length-i-1].text}
-                     
-                     </span></h6>
+<Link to={data.comments[data.comments.length-i-1].postedBy._id !== state._id?"/profile/"+data.comments[data.comments.length-i-1].postedBy._id :"/profile"  }>
+<div style={{ display: 'flex'}}>
+
+        <img  style={{width:'30px',height:'30px',borderRadius:'30px',backgroundColor:'black',marginTop:6,marginLeft:5}} src={data.comments[data.comments.length-i-1].postedBy.pic} />
+        <h5 style={{fontFamily:"'Dancing Script', cursive",marginLeft:6,fontSize:20}}>{data.comments[data.comments.length-i-1].postedBy.name}</h5></div></Link>
+                    
+                   
+                     <div style={{marginLeft:40}}> 
+                     {data.comments[data.comments.length-i-1].text}
                      </div>
-                     {/* <hr style={{width:800,float:'left',marginLeft:20}} /><br/> */}
-                     <hr style={{marginLeft:20,marginRight:20}} />
+                     
+                    
                     </div>
                  )
                  
                 
                  
              })}
+             </div>
             
            
                             

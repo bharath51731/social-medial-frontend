@@ -135,6 +135,7 @@ const fetchres= () =>
     .then(data => {
       setnLoad(false);
       fetchres()
+      M.toast({html: 'Name Cnaged',classes:"#43a047 green darken-1"})
      })
     .catch(err=>{
       setnLoad(false)
@@ -174,6 +175,8 @@ const fetchres= () =>
           .then(data => {
             setiLoad(false)
             fetchres()
+            M.toast({html: 'Profile Picture Updated',classes:"#43a047 green darken-1"})
+
           })
           .catch(err =>{ setiLoad(false)
             M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
@@ -200,6 +203,7 @@ const fetchres= () =>
     .then(data => {
       setriLoad(false)
       fetchres()
+      M.toast({html: 'Profile Picture Removed',classes:"#43a047 green darken-1"})
     })
     .catch(err => {
       setriLoad(false)
@@ -335,7 +339,7 @@ setList(user.following)
       onChange={(e)=>setName(e.target.value)}
       />
       <button disabled={nload} className="btn waves-effect waves-light #64b5f6 blue darken-1" onClick={()=>changename()} >
-      {nload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <> change name</>}
+      {nload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> change name</>}
       </button>
       <br/> <br/>
 
@@ -351,10 +355,10 @@ setList(user.following)
              </div>
              </div>
         <button disabled={iload}  className="btn waves-effect waves-light #64b5f6 blue darken-1" onClick={()=>changeimage()} >
-        {iload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <> Update pic</>}
+        {iload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Update photo</>}
       </button>
       <button disabled={riload} style={{marginLeft:10}} className="btn waves-effect waves-light #64b5f6 red darken-1" onClick={()=>delpic()}>
-      {riload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <> Remove pic</>}
+      {riload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Remove photo</>}
       </button>
       <br/> <br/>
 
@@ -371,7 +375,7 @@ setList(user.following)
       onChange={(e)=>setnewPass(e.target.value)}
       required />
        <button disabled={pload}  className="btn waves-effect waves-light #64b5f6 blue darken-1" onClick={()=>reset()} >
-       {pload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <>Change Password</>}
+       {pload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Change Password</>}
       </button>
       <br /><br />
        
@@ -383,7 +387,7 @@ setList(user.following)
       required />
       <button disabled={delload}  className="btn waves-effect waves-light #64b5f6 red darken-1" onClick={()=>delacc()} >
         
-         {delload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <> Delete My Account</>}
+         {delload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Delete My Account</>}
       </button>
 
       <div>
@@ -399,7 +403,7 @@ setList(user.following)
                  <>
                  <div key={i} style={{display:'flex',flexDirection:'row'}}>
                  <img src={data.pic} style={{width:'50px',height:'50px',borderRadius:'50%',display:'block'}} />
-                 <Link to={data._id !== state._id ? "/profile/"+data._id:'/profile'}> <p style={{width:'400px'}}>{data.name}</p></Link>
+                 <Link to={data._id !== state._id ? "/profile/"+data._id:'/profile'}> <p style={{width:'400px',marginLeft:4}}>{data.name}</p></Link>
                  <hr />
                </div>
                </>

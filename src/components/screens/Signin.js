@@ -4,7 +4,7 @@ import M from 'materialize-css';
 import {UserContext} from '../../App';
 import { CircularProgress } from "@material-ui/core";
 import {url} from '../Url';
-const Signin = (props) =>
+const Signin = () =>
 {
   const history = useHistory();
   const {state,dispatch} = useContext(UserContext)
@@ -58,7 +58,7 @@ const Signin = (props) =>
 return(
     <div style={{marginTop:150}}>
 
-    <div className="mycard">
+    <div className="mycard" >
     <div className="card auth-card input-field">
       <h2>We Connect</h2>
       <form onSubmit={(e)=>login(e)}>
@@ -75,7 +75,7 @@ return(
       onChange={(e)=>setPassword(e.target.value)}
       />
       <button style={{backgroundColor:'#64b5f6 !important'}} className="ldbtn" disabled={loading} type="submit" className="btn waves-effect waves-light #64b5f6 blue darken-1" >
-      {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <>Sign in</>}
+      {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Sign in</>}
       </button>
       </form>
       <h5>

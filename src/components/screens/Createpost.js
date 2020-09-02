@@ -61,6 +61,7 @@ const CreatePost = () =>
                    else
                    {
                      M.toast({html: 'Post created',classes:"#43a047 green darken-1"})
+                     history.push('/')
                    }
                  
                  })
@@ -102,6 +103,7 @@ const CreatePost = () =>
               else
               {
                 M.toast({html: 'Post created Succesfully',classes:"#43a047 green darken-1"})
+                history.push('/')
               }
             
             })
@@ -131,11 +133,12 @@ const style = {
             <input 
             type="text"
             placeholder="Title"
+            maxlength="50"
             value={title}
             onChange={(e)=>setTitle(e.target.value)}
              /><br/><br/>
 
-            <textarea style={style} onChange={(e)=>setBody(e.target.value)} placeholder="Body">
+            <textarea style={style} onChange={(e)=>setBody(e.target.value)} placeholder="Body" maxlength="1000">
                 {body}
             </textarea>
               
@@ -151,7 +154,7 @@ const style = {
              </div>
              </div>
              <button disabled={loading} className="btn waves-effect waves-light #64b5f6 blue darken-1" onClick={()=>postDetails()}>
-             {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <>Create Post</>}
+             {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Create Post</>}
              </button>
              </div>
         </div>
