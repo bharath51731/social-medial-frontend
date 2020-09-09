@@ -15,7 +15,9 @@ const Newpass  = ()=>{
    history.push('/');
   }
 
-    const Reset = ()=>{
+    const Reset = (e)=>{
+
+        e.preventDefault();
          if(password.length < 5)
          {
             return M.toast({html:"Password must be atleast 5 characters",classes:"#43a047 red darken-1"})
@@ -54,18 +56,20 @@ const Newpass  = ()=>{
       <div className="mycard" style={{marginTop:200}}>
           <div className="card auth-card input-field">
             <h2>We Connect</h2>
-        <form  onSubmit={()=>Reset()}>
+        <form  onSubmit={(e)=>Reset(e)}>
             <input
             type="password"
-            placeholder="new password"
+            placeholder="New password"
             value={password}
             onChange={(e)=>setPasword(e.target.value)}
+            required
             />
             <input
             type="password"
-            placeholder="confirm password"
+            placeholder="Confirm password"
             value={confirmpassword}
             onChange={(e)=>setConfirm(e.target.value)}
+            required
             />
            <button 
            type="submit"

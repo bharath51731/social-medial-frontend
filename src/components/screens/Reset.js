@@ -17,8 +17,9 @@ const Reset = () =>
    history.push('/');
   }
 
-    const reset = () =>
+    const reset = (e) =>
     {
+      e.preventDefault();
         if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email))
       {
         return M.toast({html: "Invalid Email",classes:"#43a047 red darken-1"})
@@ -53,6 +54,9 @@ const Reset = () =>
         <div className="mycard" style={{marginTop:200}}>
         <div className="card auth-card input-field">
           <h2>We Connect</h2>
+          <form
+          onSubmit={(e)=>reset(e)}
+          >
           <input
           type="text"
           placeholder="Email"
@@ -61,10 +65,11 @@ const Reset = () =>
           />
           <button className="btn waves-effect waves-light #64b5f6 blue darken-1"
           disabled={loading}
-          onClick={()=>reset()}
+          
           >
             {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <>Reset Password</>}
           </button>
+          </form>
           
   
       </div>
