@@ -54,7 +54,7 @@ const Newpass  = ()=>{
       <div className="mycard" style={{marginTop:200}}>
           <div className="card auth-card input-field">
             <h2>We Connect</h2>
-        
+        <form  onSubmit={()=>Reset()}>
             <input
             type="password"
             placeholder="new password"
@@ -67,12 +67,14 @@ const Newpass  = ()=>{
             value={confirmpassword}
             onChange={(e)=>setConfirm(e.target.value)}
             />
-           <button className="btn waves-effect waves-light #64b5f6 blue darken-1"
+           <button 
+           type="submit"
+           className="btn waves-effect waves-light #64b5f6 blue darken-1"
           disabled={loading}
-          onClick={()=>Reset()}
-          >
+         >
             {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <>Update Password</>}
           </button>
+          </form>
     
         </div>
       </div>

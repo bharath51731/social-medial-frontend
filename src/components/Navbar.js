@@ -109,6 +109,7 @@ const fetchUsers = (query) =>
       </ul>
       </div>
       </nav>
+      
       <ul class="sidenav" id="mobile-demo" ref={side}>
       <li key="1"><Link  to={state ? "/" :"/signin"}>Sign in</Link></li>
       <li key="2"><Link  to="/signup">Sign up</Link></li>

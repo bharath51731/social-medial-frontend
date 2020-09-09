@@ -160,7 +160,7 @@ const Myposts = () =>
   .then(result=>{
   if(!result.error)
   {
-   M.toast({html: 'All Post Deleted',classes:"#43a047 green darken-1"})
+   M.toast({html: 'All Posts Deleted',classes:"#43a047 green darken-1"})
    history.push('/');
   }
   else
