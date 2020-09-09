@@ -65,9 +65,9 @@ const Reset = () =>
           />
           <button className="btn waves-effect waves-light #64b5f6 blue darken-1"
           disabled={loading}
-          
+          type="submit"
           >
-            {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <>Reset Password</>}
+            {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Reset Password</>}
           </button>
           </form>
           
