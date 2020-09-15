@@ -116,7 +116,7 @@ const fetchPosts = () =>
        </div>
         <div >
         <h4 style={{fontFamily:"'Dancing Script', 'cursive'",marginLeft:6}}>{data.user.name}</h4>
-        <h6 style={{marginLeft:6}}>{data.user.email}</h6>
+        {/* <h6 style={{marginLeft:6}}>{data.user.email}</h6> */}
      
       {!data.user.followers.includes(state._id) ?
      
@@ -145,15 +145,16 @@ const fetchPosts = () =>
     </div>
     </div>
      
-      {/* <div className="gallery" style={{marginTop:10}}>
+      <div className="gallery" style={{marginTop:10}}>
                {
-                  data.posts.map((item,i)=>{
+                  data.posts.filter(data => data.photo != "").map((item,i)=>{
                        return(
-                        <img key={i} className="item" src={item.photo} alt={item.title}/>  
+                        <img key={i} className="item" src={item.photo} /> 
+                        
                        )
                    })
                }
-      </div> */}
+      </div>
       </div>
      : null}
      </>

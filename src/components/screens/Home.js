@@ -138,7 +138,7 @@ return(
     
       posts.map((data,i)=>{
         return(
-        <div key={i} className="card home-card" style={{minWidth:'520px',borderRadius:8}} >
+        <div key={i} className="card home-card" style={{minWidth:'600px'}} >
            {state._id === data.postedBy._id ? 
        <Link> <i className="material-icons" style={{
                         float:"right",
@@ -162,17 +162,22 @@ return(
         <div className="card-content">            
       <h6>{data.title}</h6>
          <p>{data.body}</p>
-
+          <br />
+          <div style={{display:'flex',flexDirection:'row'}}>
          {!data.likes.includes(state._id) ? 
                 
                 <Link> <i style={{color:'grey'}} className="material-icons"
-               onClick={()=>likepost(data._id)}>thumb_up </i><p>{data.likes.length}likes</p></Link>
+               onClick={()=>likepost(data._id)}>thumb_up </i><p style={{float:'right'}}>{data.likes.length}likes</p></Link>
                :
                 
                <Link> <i style={{color:'DodgerBlue'}} className="material-icons"
-               onClick={()=>unlikepost(data._id)}>thumb_up </i><p>{data.likes.length}likes</p></Link>}<br/>
-          <Link to={`/viewfull/${data._id}`} class="waves-effect waves-light btn">View Comments ({data.comments.length})</Link>
-         <p style={{float:'right',marginTop:20,fontFamily:"'Dancing Script', cursive"}}>{data.createdOn}</p>
+               onClick={()=>unlikepost(data._id)}>thumb_up </i>
+               <p style={{float:'right'}}>{data.likes.length}likes</p></Link>}
+              
+               </div>
+               <Link to={`/viewfull/${data._id}`}  class="waves-effect waves-light btn">View Comments ({data.comments.length})</Link>
+         
+         <p style={{float:'right',fontFamily:"'Dancing Script', cursive"}}>{data.createdOn}</p>
       
         </div>
     </div>

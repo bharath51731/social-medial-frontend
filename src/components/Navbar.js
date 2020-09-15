@@ -6,8 +6,12 @@ import '../App.css';
 import M from 'materialize-css';
 import {url} from './Url';
 
-const colour = "black";
-const navcolor= "white";
+const colour = "white";
+const navcolor= "#34495E";
+// "#34495E";
+
+const sidenavcolor= "white";
+const sidecolour = "black";
 // const colour = "white";
 // const navcolor= "#1e90ff";
 
@@ -73,11 +77,11 @@ const fetchUsers = (query) =>
       </div>
       </nav>
 
-      <ul class="sidenav" id="mobile-demo" ref={side}>
-      <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black",fontSize:20,marginLeft:30,marginTop:30}}>search</i></li>
-      <li key="2"><Link to="/profile">Profile</Link></li>
-      <li key="3"><Link to="/createpost">Create Post</Link></li>
-      <li key="4"><Link to="/myfollowing">Followings Posts</Link></li>
+      <ul class="sidenav" id="mobile-demo" ref={side} style={{backgroundColor:sidenavcolor,width:'100'}}>
+      <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:sidecolour,fontSize:20,marginLeft:30,marginTop:30}}>search</i></li>
+      <li key="2"><Link style={{color:sidecolour}} to="/profile">Profile</Link></li>
+      <li key="3"><Link style={{color:sidecolour}} to="/createpost">Create Post</Link></li>
+      <li key="4"><Link style={{color:sidecolour}} to="/myfollowing">Followings Posts</Link></li>
      
       <li key="5">
       <button className="btn waves-effect waves-light #64b5f6 red darken-1" style={{margin:4,color:'white',marginLeft:30}} 
@@ -103,7 +107,7 @@ const fetchUsers = (query) =>
       <div class="nav-wrapper" style={{color:'black !important'}} >
       <Link style={{color:colour}} className="brand-logo" to="/">We Connect</Link>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger" style={{color:colour}}><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down" >
+      <ul class="right hide-on-med-and-down" style={{backgroundColor:navcolor,width:'100'}} >
       <li key="1" ><Link style={{color:colour}} to={state ? "/" :"/signin"}>Sign in</Link></li>
       <li key="2"><Link style={{color:colour}} to="/signup">Sign up</Link></li>
       </ul>
@@ -111,8 +115,8 @@ const fetchUsers = (query) =>
       </nav>
       
       <ul class="sidenav" id="mobile-demo" ref={side}>
-      <li key="1"><Link  to={state ? "/" :"/signin"}>Sign in</Link></li>
-      <li key="2"><Link  to="/signup">Sign up</Link></li>
+      <li key="1"><Link  style={{color:sidecolour}} to={state ? "/" :"/signin"}>Sign in</Link></li>
+      <li key="2"><Link style={{color:sidecolour}}  to="/signup">Sign up</Link></li>
       </ul>
       </>
      ]

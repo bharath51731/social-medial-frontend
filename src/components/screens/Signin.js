@@ -74,7 +74,10 @@ return(
       placeholder="Password"
       onChange={(e)=>setPassword(e.target.value)}
       />
-      <button style={{backgroundColor:'#64b5f6 !important'}} className="ldbtn" disabled={loading} type="submit" className="btn waves-effect waves-light #64b5f6 blue darken-1" >
+      <button
+       className="ldbtn" disabled={loading} type="submit" className="btn waves-effect waves-light #64b5f6 blue darken-1" 
+       style={{backgroundColor:'#34495E !important'}} 
+       >
       {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Sign in</>}
       </button>
       </form>

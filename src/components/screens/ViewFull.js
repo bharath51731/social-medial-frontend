@@ -196,7 +196,7 @@ const fetchDetails = () =>
               {
                 
                   
-                  <div  className="card home-card" style={{minWidth:'550px',borderRadius:8}} >
+                  <div  className="card home-card" style={{minWidth:'600px'}} >
                      {state._id === data.postedBy._id ? 
                  <Link> <i className="material-icons" style={{
                                   float:"right",
@@ -221,14 +221,19 @@ const fetchDetails = () =>
                 <h6>{data.title}</h6>
                    <p>{data.body}</p>
   
-                   {!data.likes.includes(state._id) ? 
+                   <br />
+          <div style={{display:'flex',flexDirection:'row'}}>
+         {!data.likes.includes(state._id) ? 
                 
                 <Link> <i style={{color:'grey'}} className="material-icons"
-               onClick={()=>likepost(data._id)}>thumb_up </i><p>{data.likes.length}likes</p></Link>
+               onClick={()=>likepost(data._id)}>thumb_up </i><p style={{float:'right'}}>{data.likes.length}likes</p></Link>
                :
                 
                <Link> <i style={{color:'DodgerBlue'}} className="material-icons"
-               onClick={()=>unlikepost(data._id)}>thumb_up </i><p>{data.likes.length}likes</p></Link>}<br/>
+               onClick={()=>unlikepost(data._id)}>thumb_up </i>
+               <p style={{float:'right'}}>{data.likes.length}likes</p></Link>}
+              
+               </div>
                     
                    <form onSubmit={(e)=>{e.preventDefault()
                    makeComment(e.target[0].value,data._id)
@@ -254,7 +259,7 @@ const fetchDetails = () =>
             <div style={{float:'left'}}>
              {data.comments.map((cont,i)=>{
                  return(
-                  <div key={i} className="card " style={{minWidth:'600px',maxWidth:'600px',marginLeft:40,borderRadius:10}}  >
+                  <div key={i} className="card " style={{minWidth:'600px',maxWidth:'600px',marginLeft:40}}  >
                     {state._id == data.comments[data.comments.length-i-1].postedBy._id ? <i className="material-icons" style={{
                                         float:"right",
                                         margin:5,

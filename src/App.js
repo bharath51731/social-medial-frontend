@@ -4,6 +4,7 @@ import './App.css';
 import {BrowserRouter,Route,Switch,useHistory} from 'react-router-dom';
 import Home from './components/screens/Home';
 import Profile from './components/screens/profile';
+import UpdateProfile from './components/screens/Updateprofile';
 import Signin from './components/screens/Signin';
 import Signup from './components/screens/Signup';
 import Userprofile from './components/screens/UserProfile';
@@ -37,6 +38,7 @@ const Routing = () =>{
 <Switch>
 <Route exact path="/" component={Home} />
    <Route exact  path="/profile" component={Profile} />
+   <Route exact  path="/updateprofile" component={UpdateProfile} />
    <Route exact path="/signin" component={Signin} />
    <Route exact path="/signup" component={Signup} />
    <Route exact path="/createpost" component={CreatePost} />
@@ -56,7 +58,7 @@ function App() {
  <BrowserRouter>
    <Navbar />
    <Routing />
-   </BrowserRouter>
+  </BrowserRouter>
    </UserContext.Provider>
   );
 }

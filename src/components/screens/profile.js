@@ -111,181 +111,7 @@ const fetchres= () =>
     fetchres();
   },[])
 
-  const changename = () =>
-  {
-    if(name.length <= 0)
-    {
-      return M.toast({html: "please enter your name",classes:"#43a047 red darken-1"})
-    }
-    setnLoad(true);
-    fetch(url+"changename/",
-    {
-      method:"put",
-      headers:{
-        "Content-Type" : "application/json",
-        "Authorization":'Bearer '+JSON.parse(localStorage.getItem("token"))
-      },
-   body:JSON.stringify({
-        name
-      })
-     
-    }
-    )
-    .then(res=>res.json())
-    .then(data => {
-      setnLoad(false);
-      fetchres()
-      M.toast({html: 'Name Cnaged',classes:"#43a047 green darken-1"})
-     })
-    .catch(err=>{
-      setnLoad(false)
-      M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
-    })
-  }
 
-  const changeimage = () =>
-  {
-    if(!image)
-    return M.toast({html: "please Upload image",classes:"#43a047 red darken-1"})
-  const data = new FormData()
-  data.append("file",image)
-  data.append("upload_preset","social-app")
-  data.append("cloud_name",ckey)
-  if(image)
-  {
-    setiLoad(true)
-  fetch(`https://api.cloudinary.com/v1_1/${ckey}/image/upload`,{
-            method:"post",
-            body:data
-        })
-        .then(res=>res.json())
-        .then(data=>{
-          fetch(url+"changepic/",{
-            method:"put",
-            headers:{
-              "Authorization":"Bearer "+JSON.parse(localStorage.getItem("token")),
-              "Content-Type":"application/json"
-            },
-            body: JSON.stringify({
-              
-              pic:data.url
-            })
-          })
-          .then(res => res.json())
-          .then(data => {
-            setiLoad(false)
-            fetchres()
-            M.toast({html: 'Profile Picture Updated',classes:"#43a047 green darken-1"})
-
-          })
-          .catch(err =>{ setiLoad(false)
-            M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
-          })
-
-        })
-        .catch(err=>{setiLoad(false)
-          M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
-        })
-      }
-  }
-  
-
-  const delpic = () =>{
-    setriLoad(true)
-    fetch(url+"delpic/",{
-      method:"put",
-      headers:{
-        "Authorization":"Bearer "+JSON.parse(localStorage.getItem("token")),
-       
-      },
-    })
-    .then(res => res.json())
-    .then(data => {
-      setriLoad(false)
-      fetchres()
-      M.toast({html: 'Profile Picture Removed',classes:"#43a047 green darken-1"})
-    })
-    .catch(err => {
-      setriLoad(false)
-      M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
-    })
-  }
-  const reset = () =>
-  {
-     if(newpass.length < 5)
-      {
-         return M.toast({html: 'password must atleast 5 characters',classes:"#43a047 red darken-1"})
-      }
-      setpLoad(true);
-     fetch(url+"changepass/",{
-         method:"put",
-         headers:{
-           "Content-Type":"application/json",
-           "Authorization":"Bearer "+JSON.parse(localStorage.getItem("token"))
-         },
-         body: JSON.stringify({
-           oldpass:pass,
-           newpass:newpass
-         })
-       })
-       .then(res => res.json())
-       .then(data =>{
-         setpLoad(false)
-           if(data.error)
-            M.toast({html: data.error,classes:"#43a047 red darken-1"})
-            else
-            M.toast({html: 'Password Updated',classes:"#43a047 green darken-1"})
-       })
-       .catch(err=>{
-        setpLoad(false)
-        M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
-       })
-}
-
-const delacc = () =>
-{
-
-  swal({
-    title: "Are you sure?",
-    text: "Once deleted, you will not be able to recover ",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true,
-  })
-  .then((willDelete) => {
-   
-if(willDelete)
-{ 
-  setdelLoad(true)
-  fetch(url+"delacc/",{
-         method:"delete",
-         headers:{
-           "Content-Type":"application/json",
-           "Authorization":"Bearer "+JSON.parse(localStorage.getItem("token"))
-         },
-         body:JSON.stringify({
-           pass:delpass
-         })
-       })
-       .then(res => res.json())
-       .then(data =>{
-        setdelLoad(false)
-           if(data.error)
-            M.toast({html: data.error,classes:"#43a047 red darken-1"})
-            else if(data.message)
-            {
-            M.toast({html: 'Account Deleted',classes:"#43a047 green darken-1"})
-            localStorage.clear()
-            dispatch({type:"USER",payload:null})
-            history.push('/signin')
-           }
-       })
-       .catch(err=>{
-        setdelLoad(false)
-       })
-      }
-      })
-      }
 const setFollowers = () =>
 {
 if(user.followers.length >0)
@@ -317,6 +143,12 @@ setList(user.following)
        <img style={{width:'160px',height:'160px',borderRadius:'80px',backgroundColor:'black'}} 
         src={user ? user.pic:""}
         />
+         <button 
+      style={{marginBottom:5,marginLeft:25,color:'white',backgroundColor:'#0080ff',border:'none',width:'120px',height:'40px',borderRadius:'2px'}}
+      onClick={()=>history.push('/updateprofile')}
+      
+      >
+        <Link style={{color:'white'}}>Edit Profile</Link></button>
        </div>
       
         <div >
@@ -330,65 +162,18 @@ setList(user.following)
         </div>
        </div>
       </div>
-      <h3>Update Profile</h3>
-        <input
-      type="text"
-      placeholder="Change Name"
-      required
-       value={name}
-      onChange={(e)=>setName(e.target.value)}
-      />
-      <button disabled={nload} className="btn waves-effect waves-light #64b5f6 blue darken-1" onClick={()=>changename()} >
-      {nload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> change name</>}
-      </button>
-      <br/> <br/>
-
-      <div className="file-field input-field">
-             <div className="btn #64b5f6 blue darken-1">
-                 <span>Uplaod Image</span>
-                 <input type="file"   
-                onChange={(e)=>setImage(e.target.files[0])}
-                 />
-             </div>
-             <div className="file-path-wrapper">
-                 <input className="file-path validate" type="text" />
-             </div>
-             </div>
-        <button disabled={iload}  className="btn waves-effect waves-light #64b5f6 blue darken-1" onClick={()=>changeimage()} >
-        {iload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Update photo</>}
-      </button>
-      <button disabled={riload} style={{marginLeft:10}} className="btn waves-effect waves-light #64b5f6 red darken-1" onClick={()=>delpic()}>
-      {riload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Remove photo</>}
-      </button>
-      <br/> <br/>
-
-      <input
-      type="password"
-      placeholder="Old Password"
-      value={pass}
-      onChange={(e)=>setPass(e.target.value)}
-      required />
-       <input
-      type="password"
-      placeholder="New Password"
-      value={newpass}
-      onChange={(e)=>setnewPass(e.target.value)}
-      required />
-       <button disabled={pload}  className="btn waves-effect waves-light #64b5f6 blue darken-1" onClick={()=>reset()} >
-       {pload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Change Password</>}
-      </button>
-      <br /><br />
+     
+    <div className="gallery" style={{marginTop:10}}>
+               {
+                  posts.filter(data => data.photo != "").map((item,i)=>{
+                       return(
+                        <img key={i} className="item" src={item.photo} /> 
+                        
+                       )
+                   })
+               }
+      </div>
        
-      <input
-      type="password"
-      placeholder="Enter Your password"
-      value={delpass}
-      onChange={(e)=>setdelPass(e.target.value)}
-      required />
-      <button disabled={delload}  className="btn waves-effect waves-light #64b5f6 red darken-1" onClick={()=>delacc()} >
-        
-         {delload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Delete My Account</>}
-      </button>
 
       <div>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} >
