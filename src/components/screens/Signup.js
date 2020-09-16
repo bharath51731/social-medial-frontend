@@ -19,7 +19,7 @@ const Signup = () =>
    history.push('/');
   }
 
-  const create = (e) =>
+  const create =  (e) =>
   {
 
     e.preventDefault();
@@ -42,6 +42,7 @@ const Signup = () =>
      return  M.toast({html: "password not matching",classes:"#43a047 red darken-1"})
     }
     setLoading(true);
+    
 
     fetch(`https://emailverification.whoisxmlapi.com/api/v1?apiKey=${ekey}&emailAddress=${email}`)
     .then(res=>res.json())
@@ -71,7 +72,7 @@ const Signup = () =>
     .then(data => {
       setLoading(false);
       if(data.error)
-      M.toast({html: data.error,classes:"#c62828 red darken-3"})
+      M.toast({html: data.error,classes:"#43a047 red darken-1"})
       else
       {
       M.toast({html: 'Account created',classes:"#43a047 green darken-1"})
@@ -84,53 +85,75 @@ const Signup = () =>
        M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
     })
   }
-  else
+else
 {
   const data = new FormData()
   data.append("file",image)
   data.append("upload_preset","social-app")
   data.append("cloud_name",ckey)
-  fetch(`https://api.cloudinary.com/v1_1/${ckey}/image/upload`,{
-            method:"post",
-            body:data
-        })
-        .then(res=>res.json())
-        .then(data=>{
-          fetch(url+"signup/",{
-            method:"post",
-            headers:{
-              "Content-Type":"application/json"
-            },
-            body: JSON.stringify({
-              name,
-              email,
-              password,
-              url:data.url
-            })
+  fetch('/exists',{
+    method:'post',
+    body:{
+      email
+    }
+  })
+  .then((data)=>{
+       if(data.error)
+       {
+         setLoading(false)
+         return  M.toast({html: 'User Already Exists',classes:"#43a047 red darken-1"})
+       }
+       else
+       {
+        fetch(`https://api.cloudinary.com/v1_1/${ckey}/image/upload`,{
+          method:"post",
+          body:data
+      })
+      .then(res=>res.json())
+      .then(data=>{
+        fetch(url+"signup/",{
+          method:"post",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+            url:data.url
           })
-          .then(res => res.json())
-          .then(data => {
-            setLoading(false);
-            if(data.error)
-            M.toast({html: data.error,classes:"#c62828 red darken-3"})
-            else
-            {
-            M.toast({html: 'Account created',classes:"#43a047 green darken-1"})
-            history.push('/signin')
-            }
-            
-           })
-          .catch(err => {setLoading(false)
-            M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
-          })
-
         })
-        .catch(err=>{setLoading(false)
+        .then(res => res.json())
+        .then(data => {
+          setLoading(false);
+          if(data.error)
+          M.toast({html: data.error,classes:"#43a047 red darken-1"})
+          else
+          {
+          M.toast({html: 'Account created',classes:"#43a047 green darken-1"})
+          history.push('/signin')
+          }
+          
+         })
+        .catch(err => {setLoading(false)
           M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
-        
         })
+
+      })
+      .catch(err=>{setLoading(false)
+        M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
+      
+      })
+       }
+  })
+  .catch(err=>{
+    setLoading(false)
+    M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
+  })
+  
 }
-  }).catch(err=>{setLoading(false)
+  }).catch(err=>{
+    setLoading(false)
     M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
   })
 }
@@ -183,7 +206,7 @@ const Signup = () =>
              </div>
              </div>
 
-      <button type="submit" disabled={loading} className="btn waves-effect waves-light #64b5f6 blue darken-1" >
+      <button type="submit" disabled={loading} className="btn  #64b5f6 blue darken-1" >
       {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Sign Up</>}
       </button>
       </form>

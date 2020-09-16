@@ -214,7 +214,7 @@ const fetchres= () =>
   {
      if(newpass.length < 5)
       {
-         return M.toast({html: 'password must atleast 5 characters',classes:"#43a047 red darken-1"})
+         return M.toast({html: 'password must be atleast 5 characters',classes:"#43a047 red darken-1"})
       }
       setpLoad(true);
      fetch(url+"changepass/",{
@@ -246,7 +246,7 @@ const delacc = () =>
 {
      if(delpass.length < 5)
       {
-         return M.toast({html: 'password must atleast 5 characters',classes:"#43a047 red darken-1"})
+         return M.toast({html: 'password must be atleast 5 characters',classes:"#43a047 red darken-1"})
       }
 
   swal({
@@ -344,7 +344,7 @@ setList(user.following)
        value={name}
       onChange={(e)=>setName(e.target.value)}
       />
-      <button disabled={nload} className="btn waves-effect waves-light #64b5f6 blue darken-1"
+      <button disabled={nload} className="btn #64b5f6 blue darken-1"
       // style={{textTransform:'capitalize'}}
        onClick={()=>changename()} >
       {nload ? <span><CircularProgress style={{color:'#64b5f6',textTransform:'capitalize'}}  size={20} />Loading...</span> : <> change name</>}
@@ -363,10 +363,10 @@ setList(user.following)
                  <input className="file-path validate" type="text" />
              </div>
              </div>
-        <button disabled={iload}  className="btn waves-effect waves-light #64b5f6 blue darken-1" onClick={()=>changeimage()} >
+        <button disabled={iload}  className="btn  #64b5f6 blue darken-1" onClick={()=>changeimage()} >
         {iload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Update photo</>}
       </button>
-      <button disabled={riload} style={{marginLeft:10}} className="btn waves-effect waves-light #64b5f6 red darken-1" onClick={()=>delpic()}>
+      <button disabled={riload} style={{marginLeft:10}} className="btn  #64b5f6 red darken-1" onClick={()=>delpic()}>
       {riload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Remove photo</>}
       </button>
       <br/> <br/>
@@ -383,7 +383,7 @@ setList(user.following)
       value={newpass}
       onChange={(e)=>setnewPass(e.target.value)}
       required />
-       <button disabled={pload}  className="btn waves-effect waves-light #64b5f6 blue darken-1" onClick={()=>reset()} >
+       <button disabled={pload}  className="btn  #64b5f6 blue darken-1" onClick={()=>reset()} >
        {pload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Change Password</>}
       </button>
       <br /><br />
@@ -394,7 +394,7 @@ setList(user.following)
       value={delpass}
       onChange={(e)=>setdelPass(e.target.value)}
       required />
-      <button disabled={delload}  className="btn waves-effect waves-light #64b5f6 red darken-1" onClick={()=>delacc()} >
+      <button disabled={delload}  className="btn  #64b5f6 red darken-1" onClick={()=>delacc()} >
         
          {delload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Delete My Account</>}
       </button>

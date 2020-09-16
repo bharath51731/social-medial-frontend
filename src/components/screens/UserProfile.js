@@ -124,7 +124,7 @@ const fetchPosts = () =>
                        margin:"10px",
                        textTransform:'capitalize',
                        fontSize:17
-                   }} className="btn waves-effect waves-light #64b5f6 blue darken-1"
+                   }} className="btn  #64b5f6 blue darken-1"
                     onClick={()=>followuser()}>
                       {fload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Follow</>}
                     
@@ -134,7 +134,7 @@ const fetchPosts = () =>
                        margin:"10px",
                        textTransform:'capitalize',
                        fontSize:17
-                   }} className="btn waves-effect waves-light #64b5f6 blue darken-1"
+                   }} className="btn  #64b5f6 blue darken-1"
                     onClick={()=>unfollowuser()}>
                       {uload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Unfollow</>}
                       </button>}

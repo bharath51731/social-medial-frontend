@@ -67,7 +67,7 @@ const Reset = () =>
           />
           <button 
           type="submit"
-          className="btn waves-effect waves-light #64b5f6 blue darken-1"
+          className="btn  #64b5f6 blue darken-1"
           disabled={loading}
           
           >

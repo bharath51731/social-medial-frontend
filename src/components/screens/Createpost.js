@@ -154,7 +154,7 @@ const style = {
                  <input className="file-path validate" type="text" />
              </div>
              </div>
-             <button disabled={loading} className="btn waves-effect waves-light #64b5f6 blue darken-1" onClick={()=>postDetails()}>
+             <button disabled={loading} className="btn  #64b5f6 blue darken-1" onClick={()=>postDetails()}>
              {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Create Post</>}
              </button>
              </div>

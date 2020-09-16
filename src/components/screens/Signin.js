@@ -23,7 +23,7 @@ const Signin = () =>
     }
     if(password.length < 5)
       {
-         return M.toast({html: 'password must atleast 5 characters',classes:"#43a047 red darken-1"})
+         return M.toast({html: 'password must be atleast 5 characters',classes:"#43a047 red darken-1"})
       }
       setLoading(true);
 
@@ -80,7 +80,7 @@ return(
       onChange={(e)=>setPassword(e.target.value)}
       />
       <button
-       className="ldbtn" disabled={loading} type="submit" className="btn waves-effect waves-light #64b5f6 blue darken-1" 
+       className="ldbtn" disabled={loading} type="submit" className="btn  #64b5f6 blue darken-1" 
        style={{backgroundColor:'#34495E !important'}} 
        >
       {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Sign in</>}

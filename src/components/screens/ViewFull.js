@@ -240,7 +240,7 @@ const fetchDetails = () =>
                    e.target[0].value=""
                    }}>
                   <input type="text" placeholder="Add a comment" required /> 
-                  <button type="submit" class="btn waves-effect waves-light" type="submit" name="action">
+                  <button type="submit" class="btn" type="submit" name="action">
                     Comment
                       <i class="material-icons right">send</i>
                  </button>
