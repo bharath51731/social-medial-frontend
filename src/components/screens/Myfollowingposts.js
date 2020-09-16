@@ -142,7 +142,7 @@ return(
              <p style={{float:'right'}}>{data.likes.length}likes</p></Link>}
             
              </div>
-             <Link to={`/viewfull/${data._id}`}  class="waves-effect waves-light btn">View Comments ({data.comments.length})</Link>
+             <Link to={`/viewfull/${data._id}`}  class="waves-effect waves-light btn" style={{textTransform:'capitalize'}}>View Comments ({data.comments.length})</Link>
        
        <p style={{float:'right',fontFamily:"'Dancing Script', cursive"}}>{data.createdOn}</p>
     

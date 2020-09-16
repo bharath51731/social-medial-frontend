@@ -137,7 +137,7 @@ const fetchUsers = (query) =>
             />
 
           {localStorage.getItem("user") && localStorage.getItem("token") ? <> {userDetails.length>0? <ul  style={{color:'black'}}>
-               {userDetails.map(item=>{
+               {userDetails.filter(data=> data._id != state._id).map(item=>{
                  return <Link to={item._id !== state._id ? "/profile/"+item._id:'/profile'} onClick={(e)=>{
                   //  e.preventDefault()
                    M.Modal.getInstance(searchModal.current).close()

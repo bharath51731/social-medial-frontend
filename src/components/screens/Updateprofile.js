@@ -244,6 +244,10 @@ const fetchres= () =>
 
 const delacc = () =>
 {
+     if(delpass.length < 5)
+      {
+         return M.toast({html: 'password must atleast 5 characters',classes:"#43a047 red darken-1"})
+      }
 
   swal({
     title: "Are you sure?",
@@ -340,15 +344,18 @@ setList(user.following)
        value={name}
       onChange={(e)=>setName(e.target.value)}
       />
-      <button disabled={nload} className="btn waves-effect waves-light #64b5f6 blue darken-1" onClick={()=>changename()} >
-      {nload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> change name</>}
+      <button disabled={nload} className="btn waves-effect waves-light #64b5f6 blue darken-1"
+      // style={{textTransform:'capitalize'}}
+       onClick={()=>changename()} >
+      {nload ? <span><CircularProgress style={{color:'#64b5f6',textTransform:'capitalize'}}  size={20} />Loading...</span> : <> change name</>}
       </button>
       <br/> <br/>
 
       <div className="file-field input-field">
              <div className="btn #64b5f6 blue darken-1">
                  <span>Uplaod Image</span>
-                 <input type="file"   
+                 <input type="file" 
+                 accept="image/*"  
                 onChange={(e)=>setImage(e.target.files[0])}
                  />
              </div>

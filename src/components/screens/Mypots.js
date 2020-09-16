@@ -184,7 +184,7 @@ return(
     <>
     {load ? <Loading /> :
     <div> 
-       <div style={{float:'right'}}>
+       {/* <div style={{float:'right'}}>
        {state._id === id ?  <button className="btn waves-effect waves-light #64b5f6 red darken-1" style={{margin:4,color:'white'}} 
        disabled={delload}
        onClick={()=>deleteAllPost()}
@@ -192,7 +192,7 @@ return(
        {delload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Delete All Posts</>}
        
        </button> : null}
-        </div>
+        </div> */}
       {
         posts ?
        
@@ -243,7 +243,7 @@ return(
               
                </div>
                
-                  <Link to={`/viewfull/${data._id}`} class="waves-effect waves-light btn">View Comments ({data.comments.length})</Link>
+                  <Link to={`/viewfull/${data._id}`} class="waves-effect waves-light btn" style={{textTransform:'capitalize'}}>View Comments ({data.comments.length})</Link>
                   <p style={{float:'right',marginTop:20,fontFamily:"'Dancing Script', cursive"}}>{data.createdOn}</p>
 
                 

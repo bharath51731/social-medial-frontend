@@ -259,7 +259,7 @@ const fetchDetails = () =>
             <div style={{float:'left'}}>
              {data.comments.map((cont,i)=>{
                  return(
-                  <div key={i} className="card " style={{minWidth:'600px',maxWidth:'600px',marginLeft:40}}  >
+                  <div key={i} className="card " style={{minWidth:'600px',maxWidth:'600px',marginLeft:40,borderRadius:10}}  >
                     {state._id == data.comments[data.comments.length-i-1].postedBy._id ? <i className="material-icons" style={{
                                         float:"right",
                                         margin:5,

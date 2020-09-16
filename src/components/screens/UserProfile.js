@@ -121,18 +121,22 @@ const fetchPosts = () =>
       {!data.user.followers.includes(state._id) ?
      
       <button disabled={fload} style={{
-                       margin:"10px"
+                       margin:"10px",
+                       textTransform:'capitalize',
+                       fontSize:17
                    }} className="btn waves-effect waves-light #64b5f6 blue darken-1"
                     onClick={()=>followuser()}>
-                      {fload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <> Follow</>}
+                      {fload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Follow</>}
                     
                     </button>
                     :
                      <button disabled={uload} style={{
-                       margin:"10px"
+                       margin:"10px",
+                       textTransform:'capitalize',
+                       fontSize:17
                    }} className="btn waves-effect waves-light #64b5f6 blue darken-1"
                     onClick={()=>unfollowuser()}>
-                      {uload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading</span> : <> UNFOLLOW</>}
+                      {uload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Unfollow</>}
                       </button>}
                     
         
@@ -149,7 +153,7 @@ const fetchPosts = () =>
                {
                   data.posts.filter(data => data.photo != "").map((item,i)=>{
                        return(
-                        <img key={i} className="item" src={item.photo} /> 
+                        <img key={i} className="item" src={item.photo} style={{marginTop:10}} /> 
                         
                        )
                    })

@@ -151,7 +151,7 @@ return(
                      <Link to={data.postedBy._id !== state._id?"/profile/"+data.postedBy._id :"/profile"  }>
         <div style={{ display: 'flex'}}>
        
-        <img  style={{width:'50px',height:'50px',borderRadius:'50px',backgroundColor:'black',marginTop:6,marginLeft:5}} src={data.postedBy.pic} />
+        <img  style={{width:'50px',height:'50px',borderRadius:'50px',backgroundColor:'black',marginTop:6,marginLeft:5}} src={data.postedBy.pic} alt={"image"}/>
         <h5 style={{fontFamily:"'Dancing Script', cursive",marginLeft:6}}>{data.postedBy.name}</h5></div></Link>
         
       {data.photo == "" ? <hr /> : null } 
@@ -167,15 +167,15 @@ return(
          {!data.likes.includes(state._id) ? 
                 
                 <Link> <i style={{color:'grey'}} className="material-icons"
-               onClick={()=>likepost(data._id)}>thumb_up </i><p style={{float:'right'}}>{data.likes.length}likes</p></Link>
+               onClick={()=>likepost(data._id)}>thumb_up </i><p style={{float:'right',marginLeft:5}}>{data.likes.length}likes</p></Link>
                :
                 
                <Link> <i style={{color:'DodgerBlue'}} className="material-icons"
                onClick={()=>unlikepost(data._id)}>thumb_up </i>
-               <p style={{float:'right'}}>{data.likes.length}likes</p></Link>}
+               <p style={{float:'right',marginLeft:5}}>{data.likes.length}likes</p></Link>}
               
                </div>
-               <Link to={`/viewfull/${data._id}`}  class="waves-effect waves-light btn">View Comments ({data.comments.length})</Link>
+               <Link to={`/viewfull/${data._id}`}  class="waves-effect waves-light btn" style={{textTransform:'capitalize'}}>View Comments ({data.comments.length})</Link>
          
          <p style={{float:'right',fontFamily:"'Dancing Script', cursive"}}>{data.createdOn}</p>
       

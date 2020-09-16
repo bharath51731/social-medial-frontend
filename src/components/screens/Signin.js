@@ -15,12 +15,17 @@ const Signin = () =>
   
   const login =  (e) =>
   {
-    setLoading(true);
+    
     e.preventDefault();
     if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email))
     {
       return M.toast({html: "Invalid Email",classes:"#c62828 red darken-3"})
     }
+    if(password.length < 5)
+      {
+         return M.toast({html: 'password must atleast 5 characters',classes:"#43a047 red darken-1"})
+      }
+      setLoading(true);
 
     fetch(url+"signin/",{
     method:"post",

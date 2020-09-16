@@ -167,7 +167,7 @@ setList(user.following)
                {
                   posts.filter(data => data.photo != "").map((item,i)=>{
                        return(
-                        <img key={i} className="item" src={item.photo} /> 
+                        <img key={i} className="item" src={item.photo} style={{marginTop:10}} /> 
                         
                        )
                    })
