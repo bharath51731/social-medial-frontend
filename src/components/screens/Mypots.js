@@ -98,6 +98,7 @@ const Myposts = () =>
        })
 
        setPosts(newData)
+        //fetchPosts();
    })
     .catch(err=>console.log(err))
   }
@@ -226,7 +227,7 @@ return(
                 <div className="card-content">
                
                
-              <h6>{data.title}</h6>
+              {/* <h6>{data.title}</h6> */}
                  <p>{data.body}</p>
                  
                  <br />
@@ -234,12 +235,12 @@ return(
          {!data.likes.includes(state._id) ? 
                 
                 <Link> <i style={{color:'grey'}} className="material-icons"
-               onClick={()=>likepost(data._id)}>thumb_up </i><p style={{float:'right'}}>{data.likes.length}likes</p></Link>
+               onClick={()=>likepost(data._id)}>thumb_up </i><p style={{float:'right',marginLeft:5}}>{data.likes.length}likes</p></Link>
                :
                 
                <Link> <i style={{color:'DodgerBlue'}} className="material-icons"
                onClick={()=>unlikepost(data._id)}>thumb_up </i>
-               <p style={{float:'right'}}>{data.likes.length}likes</p></Link>}
+               <p style={{float:'right',marginLeft:5}}>{data.likes.length}likes</p></Link>}
               
                </div>
                

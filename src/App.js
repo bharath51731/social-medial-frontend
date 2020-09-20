@@ -10,6 +10,7 @@ import Signup from './components/screens/Signup';
 import Userprofile from './components/screens/UserProfile';
 import CreatePost from './components/screens/Createpost';
 import Myfollowings from './components/screens/Myfollowingposts';
+import Reload from './components/screens/reload';
 import Myposts from './components/screens/Mypots';
 import ViewFull from './components/screens/ViewFull';
 import {reducer, initialState} from './reducer/userReducer';
@@ -44,6 +45,7 @@ const Routing = () =>{
    <Route exact path="/createpost" component={CreatePost} />
    <Route exact path="/profile/:id" component={Userprofile} />
    <Route exact path="/myfollowing" component={Myfollowings} />
+   <Route path="/reload" component={Reload} />
    <Route exact path="/myposts/:id" component={Myposts} />
    <Route exact path="/viewfull/:id" component={ViewFull} />
    <Route path="/reset" component={Reset} />

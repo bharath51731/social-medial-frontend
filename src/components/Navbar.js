@@ -5,6 +5,10 @@ import Load from './screens/Loading';
 import '../App.css';
 import M from 'materialize-css';
 import {url} from './Url';
+import { CircularProgress } from "@material-ui/core";
+import {url as u} from './Url';
+import {ckey} from './Keys';
+
 
 const colour = "white";
 const navcolor= "#34495E";
@@ -21,13 +25,19 @@ const Navbar = () =>
   const {state,dispatch} = useContext(UserContext)
   const  searchModal = useRef(null)
   const  side = useRef(null)
+  const  post = useRef(null)
   const [search,setSearch] = useState('')
   const [userDetails,setUserDetails] = useState([])
+  const [title,setTitle] = useState("");
+  let [body,setBody] = useState("");
+  let [image,setImage] = useState("");
+  let [loading,setLoading] = useState(false);
   
   
   useEffect(()=>{
     M.Modal.init(searchModal.current);
     M.Sidenav.init(side.current);
+    M.Modal.init(post.current);
 },[])
 const fetchUsers = (query) =>
 {
@@ -46,6 +56,114 @@ const fetchUsers = (query) =>
     setUserDetails(results.user)
   })
 }
+
+const postDetails = ()=>{
+  let posttext = body;
+  let postimage = image;
+
+  document.getElementById('bodyc').value="";
+  document.getElementById('imgc').value="";
+  
+
+  if(!title && !image && !body)
+  return  M.toast({html: "please fill atleast one feild",classes:"#43a047 red darken-1"})
+    const data = new FormData()
+    data.append("file",postimage)
+    data.append("upload_preset","social-app")
+    data.append("cloud_name",ckey)
+    setLoading(true);
+    if(image)
+    fetch(`https://api.cloudinary.com/v1_1/${ckey}/image/upload`,{
+        method:"post",
+        body:data
+    })
+    .then(res=>res.json())
+    .then(data=>{
+       
+        if(data.url)
+
+         fetch(u+"createpost/",{
+             method:"post",
+             headers:{
+               "Content-Type":"application/json",
+               "Authorization":JSON.parse(localStorage.getItem("token"))
+             },
+             body: JSON.stringify({
+              title,
+              body:posttext,
+              url:data.url
+             })
+           })
+           .then(res => res.json())
+           .then((data) => {
+            setLoading(false);
+               if(data.error)
+               {
+                 M.toast({html: data.error,classes:"#43a047 red darken-1"})
+               }
+               else
+               {
+                 M.toast({html: 'Post created Succesfully',classes:"#43a047 green darken-1"})
+                 M.Modal.getInstance(post.current).close();
+                 
+                 history.push('/reload')
+                
+               }
+             
+             })
+             .catch(err => setLoading(false))
+        else
+        {
+          setLoading(false);
+        M.toast({html: "something went wrong",classes:"#43a047 red darken-1"})
+        }
+         
+ 
+       
+    })
+    .catch(err=>{
+      setLoading(false);
+      M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
+    })
+    else
+
+    fetch(u+"createpost/",{
+        method:"post",
+        headers:{
+          "Content-Type":"application/json",
+          "Authorization":JSON.parse(localStorage.getItem("token"))
+        },
+        body: JSON.stringify({
+         title,
+         body:posttext,
+         url:""
+        })
+      })
+      .then(res => res.json())
+      .then((data) => {
+        setLoading(false);
+          if(data.error)
+          {
+            M.toast({html: data.error,classes:"#c62828 red darken-3"})
+          }
+          else
+          {
+            M.toast({html: 'Post created Succesfully',classes:"#43a047 green darken-1"})
+            M.Modal.getInstance(post.current).close()
+           history.push('/reload')
+          }
+        
+        })
+        .catch(err => { 
+          setLoading(false)
+          M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
+        })
+
+}
+const clear = () =>{
+  document.getElementById('bodyc').value="";
+  document.getElementById('imgc').value="";
+}
   const renderList = () =>
   {
    if(state)
@@ -59,7 +177,7 @@ const fetchUsers = (query) =>
       <ul class="right hide-on-med-and-down">
        <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:colour}}>search</i></li>
       <li key="2"><Link style={{color:colour}} to="/profile">Profile</Link></li>
-      <li key="3"><Link style={{color:colour}} to="/createpost">Create Post</Link></li>
+      <li key="3"><Link data-target="modal2" className="modal-trigger" style={{color:colour}} >Create Post</Link></li>
       <li key="4"><Link style={{color:colour}} to="/myfollowing">Followings Posts</Link></li>
       
       <li key="5">
@@ -80,7 +198,7 @@ const fetchUsers = (query) =>
       <ul class="sidenav" id="mobile-demo" ref={side} style={{backgroundColor:sidenavcolor,width:'100'}}>
       <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:sidecolour,fontSize:20,marginLeft:30,marginTop:30}}>search</i></li>
       <li key="2"><Link style={{color:sidecolour}} to="/profile">Profile</Link></li>
-      <li key="3"><Link style={{color:sidecolour}} to="/createpost">Create Post</Link></li>
+      <li key="3"><Link data-target="modal2" className="modal-trigger"  >Create Post</Link></li>
       <li key="4"><Link style={{color:sidecolour}} to="/myfollowing">Followings Posts</Link></li>
      
       <li key="5">
@@ -149,28 +267,75 @@ const fetchUsers = (query) =>
                    <hr />
                    </div>
                    </Link> 
-                   
-              
-               })}
+                })}
                
-               
-              </ul> : null}</> : null }
+    </ul> : null}</> : null }
           </div>
           <div className="modal-footer">
             <button className="modal-close   btn-flat" 
             onClick={(e)=>{
-              
-              setSearch('')
+              setSearch('');
+              setUserDetails([]);
               M.Modal.getInstance(searchModal.current).close()
             }} 
             >
               close</button>
           </div>
         </div>
+        
+
+    <div id="modal2" class="modal" ref={post}>
+    <div class="modal-content">
+    <Link> <i className="material-icons" style={{
+                        float:"right",
+                        margin:5,
+                        color:'grey'
+                    }} 
+                    onClick={()=>M.Modal.getInstance(post.current).close()}
+            >clear</i></Link>
+      <h4>Create Post</h4>
+
+<textarea id="bodyc" style={style} onChange={(e)=>setBody(e.target.value)} placeholder="Write Something Here!!" maxlength="1000">
+                {body}
+            </textarea>
+     <div className="file-field input-field">
+             <div className="btn #64b5f6 blue darken-1">
+                 <span>Uplaod Image</span>
+                 <input type="file"
+                 accept="image/*"   
+                 onChange={(e)=>setImage(e.target.files[0])}/>
+             </div>
+
+             <div className="file-path-wrapper">
+                 <input id="imgc" className="file-path" type="text" />
+             </div>
+             </div>
+             <button disabled={loading} className="btn   #64b5f6 blue darken-1" onClick={()=>postDetails()}>
+             {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Create Post</>}
+           </button>
+           <button style={{marginLeft:5}} disabled={loading} className="btn  #64b5f6 red darken-1"
+            onClick={()=>{
+             clear();
+           }}>
+             Clear All
+            </button>
+             
+    </div>
+    
+  </div>
       
       </div>
     )
 }
+
+const style = {
+  resize:'none',
+  padding:'9px',
+  height:'150px',
+  fontSize:'15px',
+  width:'800px',
+  borderRadius:0
+};
 export default Navbar;
 
 

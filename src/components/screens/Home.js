@@ -116,6 +116,7 @@ const unlikepost = (id) =>
   })
   
   setPosts(newData)
+  //fetchPosts();
  
 
   }).catch(err=>{
@@ -160,10 +161,10 @@ return(
           <img src={data.photo} />
         </div> : null}
         <div className="card-content">            
-      <h6>{data.title}</h6>
-         <p>{data.body}</p>
+      {/* <h6>{data.title}</h6> */}
+         <p >{data.body}</p>
           <br />
-          <div style={{display:'flex',flexDirection:'row'}}>
+          <div style={{display:'flex',flexDirection:'row',margin:0,padding:0}}>
          {!data.likes.includes(state._id) ? 
                 
                 <Link> <i style={{color:'grey'}} className="material-icons"
