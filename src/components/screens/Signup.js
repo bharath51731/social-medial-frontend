@@ -21,9 +21,10 @@ const Signup = () =>
 
   const create =  (e) =>
   {
+    
 
     e.preventDefault();
-    
+    let username = name.trim();
     if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email))
       {
         return M.toast({html: "Invalid Email",classes:"#43a047 red darken-1"})
@@ -33,7 +34,7 @@ const Signup = () =>
     {
       return M.toast({html: "password must be atleast 5 characters",classes:"#43a047 red darken-1"})
     }
-    if(name.length <2)
+    if(username.length <2)
     {
      return  M.toast({html: "name must be atleast 2 characters",classes:"#43a047 red darken-1"})
     }
@@ -62,7 +63,7 @@ const Signup = () =>
         "Content-Type":"application/json"
       },
       body: JSON.stringify({
-        name,
+        name:username,
         email,
         password,
         
@@ -117,7 +118,7 @@ else
             "Content-Type":"application/json"
           },
           body: JSON.stringify({
-            name,
+            name:username,
             email,
             password,
             url:data.url

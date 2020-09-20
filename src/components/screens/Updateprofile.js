@@ -113,7 +113,8 @@ const fetchres= () =>
 
   const changename = () =>
   {
-    if(name.length <= 0)
+    let username = name.trim();
+    if(username.length <= 0)
     {
       return M.toast({html: "please enter your name",classes:"#43a047 red darken-1"})
     }
@@ -126,7 +127,7 @@ const fetchres= () =>
         "Authorization":'Bearer '+JSON.parse(localStorage.getItem("token"))
       },
    body:JSON.stringify({
-        name
+        name:username
       })
      
     }
@@ -135,7 +136,7 @@ const fetchres= () =>
     .then(data => {
       setnLoad(false);
       fetchres()
-      M.toast({html: 'Name Cnaged',classes:"#43a047 green darken-1"})
+      M.toast({html: 'Name Changed',classes:"#43a047 green darken-1"})
      })
     .catch(err=>{
       setnLoad(false)

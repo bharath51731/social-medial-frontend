@@ -61,11 +61,13 @@ const postDetails = ()=>{
   let posttext = body;
   let postimage = image;
 
+  posttext = posttext.trim();
+
   document.getElementById('bodyc').value="";
   document.getElementById('imgc').value="";
   
 
-  if(!title && !image && !body)
+  if( !image && !posttext)
   return  M.toast({html: "please fill atleast one feild",classes:"#43a047 red darken-1"})
     const data = new FormData()
     data.append("file",postimage)
@@ -105,7 +107,7 @@ const postDetails = ()=>{
                {
                  M.toast({html: 'Post created Succesfully',classes:"#43a047 green darken-1"})
                  M.Modal.getInstance(post.current).close();
-                 
+                 clear();
                  history.push('/reload')
                 
                }
@@ -150,7 +152,8 @@ const postDetails = ()=>{
           {
             M.toast({html: 'Post created Succesfully',classes:"#43a047 green darken-1"})
             M.Modal.getInstance(post.current).close()
-           history.push('/reload')
+            clear();
+            history.push('/reload')
           }
         
         })
@@ -163,6 +166,9 @@ const postDetails = ()=>{
 const clear = () =>{
   document.getElementById('bodyc').value="";
   document.getElementById('imgc').value="";
+
+  setBody("");
+  setImage("");
 }
   const renderList = () =>
   {
@@ -184,6 +190,8 @@ const clear = () =>{
       <button className="btn waves-effect waves-light #64b5f6 red darken-1" style={{margin:4,color:'white'}} 
        onClick={()=>{
         localStorage.clear()
+        M.Modal.getInstance(searchModal.current).close()
+        setSearch('')
         dispatch({type:'CLEAR'})
         history.push('/signin')
        }}
@@ -313,7 +321,7 @@ const clear = () =>{
              <button disabled={loading} className="btn   #64b5f6 blue darken-1" onClick={()=>postDetails()}>
              {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Create Post</>}
            </button>
-           <button style={{marginLeft:5}} disabled={loading} className="btn  #64b5f6 red darken-1"
+           <button style={{marginLeft:5}}  className="btn  #64b5f6 red darken-1"
             onClick={()=>{
              clear();
            }}>
