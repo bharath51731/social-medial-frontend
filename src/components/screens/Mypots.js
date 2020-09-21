@@ -185,15 +185,6 @@ return(
     <>
     {load ? <Loading /> :
     <div> 
-       {/* <div style={{float:'right'}}>
-       {state._id === id ?  <button className="btn waves-effect waves-light #64b5f6 red darken-1" style={{margin:4,color:'white'}} 
-       disabled={delload}
-       onClick={()=>deleteAllPost()}
-       >
-       {delload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Delete All Posts</>}
-       
-       </button> : null}
-        </div> */}
       {
         posts ?
        
@@ -215,8 +206,8 @@ return(
                              <Link to={data.postedBy._id !== state._id?"/profile/"+data.postedBy._id :"/profile"  }>
                 <div style={{ display: 'flex'}}>
                
-                <img  style={{width:'50px',height:'50px',borderRadius:'50px',backgroundColor:'black',marginTop:6,marginLeft:5}} src={data.postedBy.pic} />
-                <h5 style={{fontFamily:"'Dancing Script', cursive",marginLeft:6}}>{data.postedBy.name}</h5></div></Link>
+                <img  className="postedbyimage" src={data.postedBy.pic} />
+                <h5 className="postedbyname">{data.postedBy.name}</h5></div></Link>
                 
               
                {data.photo == "" ? <hr /> : null } 
@@ -261,3 +252,13 @@ return(
 }
 
 export default Myposts;
+
+ {/* <div style={{float:'right'}}>
+       {state._id === id ?  <button className="btn waves-effect waves-light #64b5f6 red darken-1" style={{margin:4,color:'white'}} 
+       disabled={delload}
+       onClick={()=>deleteAllPost()}
+       >
+       {delload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Delete All Posts</>}
+       
+       </button> : null}
+        </div> */}

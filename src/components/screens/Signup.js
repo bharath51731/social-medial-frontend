@@ -207,9 +207,9 @@ else
              </div>
              </div>
 
-      <button type="submit" disabled={loading} className="btn  #64b5f6 blue darken-1" >
-      {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Sign Up</>}
-      </button>
+             {!loading ? <button type="submit" disabled={loading} className="btn  #64b5f6 blue darken-1" >
+                 signup
+            </button> :  <CircularProgress className="loadingcolor"   />}
       </form>
       
           <Link to="/signin"><h5>Already have an account ?</h5></Link>

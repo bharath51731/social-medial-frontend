@@ -152,7 +152,7 @@ setList(user.following)
        </div>
       
         <div >
-        <h4 style={{fontFamily:"'Dancing Script', 'cursive'"}}>{user? user.name : null }</h4>
+        <h4 >{user? user.name : null }</h4>
         <h5>{ user ? user.email : null }</h5>
         
         <div style={{display:"flex",justifyContent:"space-between",width:"108%"}}>
@@ -203,5 +203,6 @@ setList(user.following)
 }</>
   )
 }
+// style={{fontFamily:"'Dancing Script', 'cursive'"}}
 
 export default Profile;

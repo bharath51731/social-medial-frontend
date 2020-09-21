@@ -2,7 +2,6 @@ import React ,{useContext,useRef,useEffect,useState}from 'react';
 import {Link,useHistory} from 'react-router-dom';
 import {UserContext} from '../App';
 import Load from './screens/Loading';
-import '../App.css';
 import M from 'materialize-css';
 import {url} from './Url';
 import { CircularProgress } from "@material-ui/core";
@@ -68,7 +67,7 @@ const postDetails = ()=>{
   
 
   if( !image && !posttext)
-  return  M.toast({html: "please fill atleast one feild",classes:"#43a047 red darken-1"})
+  return  M.toast({html: "please fill atleast one field",classes:"#43a047 red darken-1"})
     const data = new FormData()
     data.append("file",postimage)
     data.append("upload_preset","social-app")
@@ -91,7 +90,7 @@ const postDetails = ()=>{
                "Authorization":JSON.parse(localStorage.getItem("token"))
              },
              body: JSON.stringify({
-              title,
+           
               body:posttext,
               url:data.url
              })
@@ -136,7 +135,7 @@ const postDetails = ()=>{
           "Authorization":JSON.parse(localStorage.getItem("token"))
         },
         body: JSON.stringify({
-         title,
+       
          body:posttext,
          url:""
         })
@@ -189,11 +188,12 @@ const clear = () =>{
       <li key="5">
       <button className="btn waves-effect waves-light #64b5f6 red darken-1" style={{margin:4,color:'white'}} 
        onClick={()=>{
-        localStorage.clear()
-        M.Modal.getInstance(searchModal.current).close()
-        setSearch('')
-        dispatch({type:'CLEAR'})
-        history.push('/signin')
+        localStorage.clear();
+        M.Modal.getInstance(searchModal.current).close();
+        setSearch('');
+        clear();
+        dispatch({type:'CLEAR'});
+        history.push('/signin');
        }}
       >
          Log Out
@@ -212,9 +212,12 @@ const clear = () =>{
       <li key="5">
       <button className="btn waves-effect waves-light #64b5f6 red darken-1" style={{margin:4,color:'white',marginLeft:30}} 
        onClick={()=>{
-        localStorage.clear()
-        dispatch({type:'CLEAR'})
-        history.push('/signin')
+        localStorage.clear();
+        M.Modal.getInstance(searchModal.current).close();
+        setSearch('');
+        clear();
+        dispatch({type:'CLEAR'});
+        history.push('/signin');
        }}
       >
        
@@ -299,7 +302,12 @@ const clear = () =>{
                         margin:5,
                         color:'grey'
                     }} 
-                    onClick={()=>M.Modal.getInstance(post.current).close()}
+                    onClick={()=>
+                      {
+                      M.Modal.getInstance(post.current).close();
+                      clear();
+                    }
+                    }
             >clear</i></Link>
       <h4>Create Post</h4>
 
@@ -318,9 +326,9 @@ const clear = () =>{
                  <input id="imgc" className="file-path" type="text" />
              </div>
              </div>
-             <button disabled={loading} className="btn   #64b5f6 blue darken-1" onClick={()=>postDetails()}>
-             {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Create Post</>}
-           </button>
+             {!loading ? <button disabled={loading} className="btn   #64b5f6 blue darken-1" onClick={()=>postDetails()}>
+             create post
+           </button> :  <CircularProgress className="loadingcolor"  />}
            <button style={{marginLeft:5}}  className="btn  #64b5f6 red darken-1"
             onClick={()=>{
              clear();

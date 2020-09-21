@@ -207,8 +207,8 @@ const fetchDetails = () =>
                               >clear</i></Link>
                               : null}
                   <div style={{ display: 'flex'}}>
-                  <img  style={{width:'50px',height:'50px',borderRadius:'50px',backgroundColor:'black',marginTop:6,marginLeft:5}} src={data.postedBy.pic} />
-                  <Link to={data.postedBy._id !== state._id?"/profile/"+data.postedBy._id :"/profile"  }><h5 style={{fontFamily:"'Dancing Script', cursive",marginLeft:6}}>{data.postedBy.name}</h5></Link></div>
+                  <img  className="postedbyimage" src={data.postedBy.pic} />
+                  <Link to={data.postedBy._id !== state._id?"/profile/"+data.postedBy._id :"/profile"  }><h5 className="postedbyname">{data.postedBy.name}</h5></Link></div>
                   
                   {data.photo == "" ? <hr /> : null } 
 
@@ -253,8 +253,8 @@ const fetchDetails = () =>
                 
               }
              
-            <h4 style={{fontFamily:"'Dancing Script', cursive" }}>Comments({data.comments.length})</h4>
-              <hr style={{margin:10}} />
+            <h4>Comments({data.comments.length})</h4>
+              {/* <hr style={{margin:10}} /> */}
               
             <div style={{float:'left'}}>
              {data.comments.map((cont,i)=>{
@@ -270,8 +270,8 @@ const fetchDetails = () =>
 <Link to={data.comments[data.comments.length-i-1].postedBy._id !== state._id?"/profile/"+data.comments[data.comments.length-i-1].postedBy._id :"/profile"  }>
 <div style={{ display: 'flex'}}>
 
-        <img  style={{width:'30px',height:'30px',borderRadius:'30px',backgroundColor:'black',marginTop:6,marginLeft:5}} src={data.comments[data.comments.length-i-1].postedBy.pic} />
-        <h5 style={{fontFamily:"'Dancing Script', cursive",marginLeft:6,fontSize:20}}>{data.comments[data.comments.length-i-1].postedBy.name}</h5></div></Link>
+        <img  style={{width:'30px',height:'30px',borderRadius:'30px',backgroundColor:'black',marginTop:10,marginLeft:5}} src={data.comments[data.comments.length-i-1].postedBy.pic} />
+        <h5 style={{marginLeft:6,fontSize:15,marginBottom:6}}>{data.comments[data.comments.length-i-1].postedBy.name}</h5></div></Link>
                     
                    
                      <div style={{marginLeft:40}}> 

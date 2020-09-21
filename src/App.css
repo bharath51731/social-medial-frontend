@@ -123,3 +123,25 @@ textarea {
   outline-color: #1E88E5;
 }
 
+.loadingcolor
+{
+color: #3498DB !important;
+size: 10px;
+
+}
+.postedbyimage
+{
+  width:50px;
+  height:50px;
+  border-radius:50px;
+  background-color: black;
+  margin-top:6px;
+  margin-left:5px;
+}
+.postedbyname
+{
+  margin-left: 6px;
+}
+
+
+

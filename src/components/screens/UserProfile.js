@@ -115,7 +115,7 @@ const fetchPosts = () =>
        />
        </div>
         <div >
-        <h4 style={{fontFamily:"'Dancing Script', 'cursive'",marginLeft:6}}>{data.user.name}</h4>
+        <h4 style={{marginLeft:6}}>{data.user.name}</h4>
         {/* <h6 style={{marginLeft:6}}>{data.user.email}</h6> */}
      
       {!data.user.followers.includes(state._id) ?

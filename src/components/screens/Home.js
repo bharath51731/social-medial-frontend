@@ -152,8 +152,8 @@ return(
                      <Link to={data.postedBy._id !== state._id?"/profile/"+data.postedBy._id :"/profile"  }>
         <div style={{ display: 'flex'}}>
        
-        <img  style={{width:'50px',height:'50px',borderRadius:'50px',backgroundColor:'black',marginTop:6,marginLeft:5}} src={data.postedBy.pic} alt={"image"}/>
-        <h5 style={{fontFamily:"'Dancing Script', cursive",marginLeft:6}}>{data.postedBy.name}</h5></div></Link>
+        <img  className="postedbyimage"  src={data.postedBy.pic} alt={"image"}/>
+        <h5 className="postedbyname" >{data.postedBy.name}</h5></div></Link>
         
       {data.photo == "" ? <hr /> : null } 
 

@@ -14,7 +14,6 @@ import Reload from './components/screens/reload';
 import Myposts from './components/screens/Mypots';
 import ViewFull from './components/screens/ViewFull';
 import {reducer, initialState} from './reducer/userReducer';
-import './components/screens/Header.css';
 import Reset from './components/screens/Reset';
 import Newpass from './components/screens/Newpass';
 export const UserContext = createContext();

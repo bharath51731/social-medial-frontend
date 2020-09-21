@@ -4,6 +4,7 @@ import M from 'materialize-css';
 import {UserContext} from '../../App';
 import { CircularProgress } from "@material-ui/core";
 import {url} from '../Url';
+
 const Signin = () =>
 {
   const history = useHistory();
@@ -79,12 +80,12 @@ return(
       placeholder="Password"
       onChange={(e)=>setPassword(e.target.value)}
       />
-      <button
+     {!loading ? <button
        className="ldbtn" disabled={loading} type="submit" className="btn  #64b5f6 blue darken-1" 
        style={{backgroundColor:'#34495E !important'}} 
        >
-      {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Sign in</>}
-      </button>
+      Sign in
+      </button> : <CircularProgress className="loadingcolor" style={{marginTop:5}}   />}
       </form>
       <h5>
           <Link to="/signup">Dont have an account ?</Link>

@@ -4,7 +4,6 @@ import {UserContext} from '../../App';
 import M from 'materialize-css';
 import swal from 'sweetalert';
 import { CircularProgress } from "@material-ui/core";
-import '../../App.css';
 import {url} from '../Url';
 import Loading from './Loading';
 import {ckey} from '../Keys';
@@ -17,6 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 
+const size = 30;
 const styles = (theme) => ({
   root: {
     margin: 0,
@@ -114,7 +114,7 @@ const fetchres= () =>
   const changename = () =>
   {
     let username = name.trim();
-    if(username.length <= 0)
+    if(username.length < 2)
     {
       return M.toast({html: "please enter your name",classes:"#43a047 red darken-1"})
     }
@@ -135,7 +135,8 @@ const fetchres= () =>
     .then(res=>res.json())
     .then(data => {
       setnLoad(false);
-      fetchres()
+      fetchres();
+      setName("");
       M.toast({html: 'Name Changed',classes:"#43a047 green darken-1"})
      })
     .catch(err=>{
@@ -175,7 +176,8 @@ const fetchres= () =>
           .then(res => res.json())
           .then(data => {
             setiLoad(false)
-            fetchres()
+            fetchres();
+            setImage("");
             M.toast({html: 'Profile Picture Updated',classes:"#43a047 green darken-1"})
 
           })
@@ -235,7 +237,11 @@ const fetchres= () =>
            if(data.error)
             M.toast({html: data.error,classes:"#43a047 red darken-1"})
             else
+            {
+              setPass("");
+              setnewPass("");
             M.toast({html: 'Password Updated',classes:"#43a047 green darken-1"})
+            }
        })
        .catch(err=>{
         setpLoad(false)
@@ -279,7 +285,7 @@ if(willDelete)
             M.toast({html: data.error,classes:"#43a047 red darken-1"})
             else if(data.message)
             {
-            M.toast({html: 'Account Deleted',classes:"#43a047 green darken-1"})
+            M.toast({html: 'Account has been Deleted',classes:"#43a047 green darken-1"})
             localStorage.clear()
             dispatch({type:"USER",payload:null})
             history.push('/signin')
@@ -325,7 +331,7 @@ setList(user.following)
        </div>
       
         <div >
-        <h4 style={{fontFamily:"'Dancing Script', 'cursive'"}}>{user? user.name : null }</h4>
+        <h4 >{user? user.name : null }</h4>
         <h5>{ user ? user.email : null }</h5>
         
         <div style={{display:"flex",justifyContent:"space-between",width:"108%"}}>
@@ -345,11 +351,11 @@ setList(user.following)
        value={name}
       onChange={(e)=>setName(e.target.value)}
       />
-      <button disabled={nload} className="btn #64b5f6 blue darken-1"
-      // style={{textTransform:'capitalize'}}
+     {!nload ? <button disabled={nload} className="btn #64b5f6 blue darken-1"
+      
        onClick={()=>changename()} >
-      {nload ? <span><CircularProgress style={{color:'#64b5f6',textTransform:'capitalize'}}  size={20} />Loading...</span> : <> change name</>}
-      </button>
+       change name
+      </button> : <CircularProgress size={size} className="loadingcolor" />}
       <br/> <br/>
 
       <div className="file-field input-field">
@@ -361,17 +367,21 @@ setList(user.following)
                  />
              </div>
              <div className="file-path-wrapper">
-                 <input className="file-path validate" type="text" />
+                 <input className="file-path " type="text" />
              </div>
              </div>
-        <button disabled={iload}  className="btn  #64b5f6 blue darken-1" onClick={()=>changeimage()} >
-        {iload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Update photo</>}
-      </button>
-      <button disabled={riload} style={{marginLeft:10}} className="btn  #64b5f6 red darken-1" onClick={()=>delpic()}>
-      {riload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Remove photo</>}
-      </button>
+             {!iload ? <button disabled={iload} className="btn #64b5f6 blue darken-1"
+      
+      onClick={()=>changeimage()} >
+      update photo
+     </button> : <CircularProgress size={size} className="loadingcolor" />}
+     {!riload ? <button disabled={riload} style={{marginLeft:10}} className="btn  #64b5f6 red darken-1" 
+      
+      onClick={()=>delpic()} >
+      remove photo
+     </button> : <CircularProgress size={size} style={{marginLeft:30}} className="loadingcolor" />}
       <br/> <br/>
-
+      
       <input
       type="password"
       placeholder="Old Password"
@@ -384,9 +394,9 @@ setList(user.following)
       value={newpass}
       onChange={(e)=>setnewPass(e.target.value)}
       required />
-       <button disabled={pload}  className="btn  #64b5f6 blue darken-1" onClick={()=>reset()} >
-       {pload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Change Password</>}
-      </button>
+     {!pload ?  <button disabled={pload}  className="btn  #64b5f6 blue darken-1" onClick={()=>reset()} >
+       change password
+      </button> : <CircularProgress className="loadingcolor"  size={size} />}
       <br /><br />
        
       <input
@@ -395,10 +405,9 @@ setList(user.following)
       value={delpass}
       onChange={(e)=>setdelPass(e.target.value)}
       required />
-      <button disabled={delload}  className="btn  #64b5f6 red darken-1" onClick={()=>delacc()} >
-        
-         {delload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Delete My Account</>}
-      </button>
+     {!delload ?  <button disabled={delload}  className="btn  #64b5f6 red darken-1"  onClick={()=>delacc()} >
+      delete my account
+      </button> : <CircularProgress className="loadingcolor"  size={size} />}
 
       <div>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} >
