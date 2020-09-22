@@ -54,9 +54,6 @@ const Signup = () =>
       setLoading(false);
       return M.toast({html: "invalid email",classes:"#43a047 red darken-1"})
     }
-    if(!image)
-    {
-    
     fetch(url+"signup/",{
       method:"post",
       headers:{
@@ -85,75 +82,7 @@ const Signup = () =>
        setLoading(false)
        M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
     })
-  }
-else
-{
-  const data = new FormData()
-  data.append("file",image)
-  data.append("upload_preset","social-app")
-  data.append("cloud_name",ckey)
-  fetch('/exists',{
-    method:'post',
-    body:{
-      email
-    }
-  })
-  .then((data)=>{
-       if(data.error)
-       {
-         setLoading(false)
-         return  M.toast({html: 'User Already Exists',classes:"#43a047 red darken-1"})
-       }
-       else
-       {
-        fetch(`https://api.cloudinary.com/v1_1/${ckey}/image/upload`,{
-          method:"post",
-          body:data
-      })
-      .then(res=>res.json())
-      .then(data=>{
-        fetch(url+"signup/",{
-          method:"post",
-          headers:{
-            "Content-Type":"application/json"
-          },
-          body: JSON.stringify({
-            name:username,
-            email,
-            password,
-            url:data.url
-          })
-        })
-        .then(res => res.json())
-        .then(data => {
-          setLoading(false);
-          if(data.error)
-          M.toast({html: data.error,classes:"#43a047 red darken-1"})
-          else
-          {
-          M.toast({html: 'Account created',classes:"#43a047 green darken-1"})
-          history.push('/signin')
-          }
-          
-         })
-        .catch(err => {setLoading(false)
-          M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
-        })
-
-      })
-      .catch(err=>{setLoading(false)
-        M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
-      
-      })
-       }
-  })
-  .catch(err=>{
-    setLoading(false)
-    M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
-  })
-  
-}
-  }).catch(err=>{
+}).catch(err=>{
     setLoading(false)
     M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
   })
@@ -194,20 +123,7 @@ else
       onChange={(e)=>setConfirm(e.target.value)}
       />
 
-          <div className="file-field input-field">
-             <div className="btn #64b5f6 blue darken-1">
-                 <span>Uplaod Image</span>
-                 <input type="file" 
-                 accept="image/*"  
-                onChange={(e)=>setImage(e.target.files[0])}
-                 />
-             </div>
-             <div className="file-path-wrapper">
-                 <input className="file-path validate" type="text" />
-             </div>
-             </div>
-
-             {!loading ? <button type="submit" disabled={loading} className="btn  #64b5f6 blue darken-1" >
+{!loading ? <button type="submit" disabled={loading} className="btn  #64b5f6 blue darken-1" >
                  signup
             </button> :  <CircularProgress className="loadingcolor"   />}
       </form>
