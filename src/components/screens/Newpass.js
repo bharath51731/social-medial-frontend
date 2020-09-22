@@ -71,13 +71,14 @@ const Newpass  = ()=>{
             onChange={(e)=>setConfirm(e.target.value)}
             required
             />
-           <button 
+          {!loading ? <button 
            type="submit"
            className="btn  #64b5f6 blue darken-1"
            disabled={loading}
          >
-            {loading ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <>Update Password</>}
-          </button>
+             Reset password
+         </button> :  
+          <CircularProgress className="loadingcolor"  size={30} />}
           </form>
     
         </div>

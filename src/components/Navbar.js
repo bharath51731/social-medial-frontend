@@ -11,7 +11,7 @@ import {ckey} from './Keys';
 
 const colour = "white";
 const navcolor= "#34495E";
-// "#34495E";
+// "#34495E";#34495E
 
 const sidenavcolor= "white";
 const sidecolour = "black";
@@ -328,7 +328,7 @@ const clear = () =>{
              </div>
              {!loading ? <button disabled={loading} className="btn   #64b5f6 blue darken-1" onClick={()=>postDetails()}>
              create post
-           </button> :  <CircularProgress className="loadingcolor"  />}
+           </button> :  <CircularProgress size={30} className="loadingcolor"  />}
            <button style={{marginLeft:5}}  className="btn  #64b5f6 red darken-1"
             onClick={()=>{
              clear();
