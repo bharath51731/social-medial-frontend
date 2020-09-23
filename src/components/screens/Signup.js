@@ -100,6 +100,8 @@ const Signup = () =>
       required
       value={name}
       onChange={(e)=>setName(e.target.value)}
+     minLength="2"
+     maxLength="20"
       />
       <input
       type="email"
@@ -114,6 +116,8 @@ const Signup = () =>
       required
       value={password}
       onChange={(e)=>setPassword(e.target.value)}
+      minLength="5"
+      maxLength="12"
       />
        <input
       type="password"
@@ -121,6 +125,8 @@ const Signup = () =>
       required
       value={confirmPass}
       onChange={(e)=>setConfirm(e.target.value)}
+      minLength="5"
+      maxLength="12"
       />
 
 {!loading ? <button type="submit" disabled={loading} className="btn  #64b5f6 blue darken-1" >

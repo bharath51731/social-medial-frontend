@@ -265,7 +265,7 @@ const clear = () =>{
             onChange={(e)=>fetchUsers(e.target.value)}
             />
 
-          {localStorage.getItem("user") && localStorage.getItem("token") ? <> {userDetails.length>0? <ul  style={{color:'black'}}>
+          {localStorage.getItem("user") && localStorage.getItem("token") ? <> {userDetails.length>0 ? <ul  style={{color:'black'}}>
                {userDetails.filter(data=> data._id != state._id).map(item=>{
                  return <Link to={item._id !== state._id ? "/profile/"+item._id:'/profile'} onClick={(e)=>{
                   //  e.preventDefault()

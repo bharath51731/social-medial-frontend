@@ -79,6 +79,8 @@ return(
       required
       placeholder="Password"
       onChange={(e)=>setPassword(e.target.value)}
+      minLength="5"
+      maxLength="12"
       />
      {!loading ? <button
        className="ldbtn" disabled={loading} type="submit" className="btn  #64b5f6 blue darken-1" 

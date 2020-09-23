@@ -70,7 +70,10 @@ const fetchPosts = () =>
   }).then(res=>res.json())
   .then(data=>{ 
     
-    fetchPosts();
+     fetchPosts();
+    // data.user.followers.push(state._id);
+   
+    // setData(data);
     setFload(false);
   })
   .catch(err=>setFload(false))
@@ -91,11 +94,13 @@ const fetchPosts = () =>
   .then(data=>{ 
     
     fetchPosts();
+    // data = data.user.followers.filter(d => d._id !== state._id);
+    // setData(data);
     setUload(false);
   })
   .catch(err=>setUload(false))
   }
-
+// console.log(data);
   
   return(
     <>
@@ -120,24 +125,23 @@ const fetchPosts = () =>
      
       {!data.user.followers.includes(state._id) ?
      
-      <button disabled={fload} style={{
+      <>{!fload ? <button disabled={fload} style={{
                        margin:"10px",
                        textTransform:'capitalize',
                        fontSize:17
                    }} className="btn  #64b5f6 blue darken-1"
                     onClick={()=>followuser()}>
-                      {fload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Follow</>}
-                    
-                    </button>
+                      Follow
+                  </button> :<CircularProgress className="loadingcolor"  size={30} />} </>
                     :
-                     <button disabled={uload} style={{
-                       margin:"10px",
-                       textTransform:'capitalize',
-                       fontSize:17
-                   }} className="btn  #64b5f6 blue darken-1"
-                    onClick={()=>unfollowuser()}>
-                      {uload ? <span><CircularProgress style={{color:'#64b5f6'}}  size={20} />Loading...</span> : <> Unfollow</>}
-                      </button>}
+                    <>{!uload ? <button disabled={uload} style={{
+                      margin:"10px",
+                      textTransform:'capitalize',
+                      fontSize:17
+                  }} className="btn  #64b5f6 blue darken-1"
+                   onClick={()=>unfollowuser()}>
+                     unFollow
+                 </button> :<CircularProgress className="loadingcolor"  size={30} />} </>}
                     
         
         <div style={{display:"flex",justifyContent:"space-between",width:"108%"}}>

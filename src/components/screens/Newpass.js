@@ -63,6 +63,8 @@ const Newpass  = ()=>{
             value={password}
             onChange={(e)=>setPasword(e.target.value)}
             required
+            minLength="5"
+            maxLength="12"
             />
             <input
             type="password"
@@ -70,6 +72,8 @@ const Newpass  = ()=>{
             value={confirmpassword}
             onChange={(e)=>setConfirm(e.target.value)}
             required
+            minLength="5"
+            maxLength="12"
             />
           {!loading ? <button 
            type="submit"

@@ -253,13 +253,15 @@ const fetchDetails = () =>
                 
               }
              
-            <h4>Comments({data.comments.length})</h4>
+            <h4 style={{marginLeft:20}}>Comments({data.comments.length})</h4>
               {/* <hr style={{margin:10}} /> */}
               
-            <div style={{float:'left'}}>
+            <div >
              {data.comments.map((cont,i)=>{
                  return(
-                  <div key={i} className="card " style={{minWidth:'600px',maxWidth:'600px',marginLeft:40,borderRadius:10}}  >
+                  <div key={i} className="card home-card" 
+                  style={{minWidth:'600px',maxWidth:'600px'}}   
+                  >
                     {state._id == data.comments[data.comments.length-i-1].postedBy._id ? <i className="material-icons" style={{
                                         float:"right",
                                         margin:5,
@@ -301,5 +303,6 @@ const fetchDetails = () =>
 
 export default ViewFull;
 
-
+// style={{minWidth:'600px',maxWidth:'600px',marginLeft:40,borderRadius:10,justifyContent:'center'}}
+// style={{float:'left',marginLeft:30}}
 
