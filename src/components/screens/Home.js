@@ -34,7 +34,8 @@ const Home = () =>
     .catch(err=>{setLoad(false)})}
     
   useEffect(()=>{
-   fetchPosts()
+    if(localStorage.getItem("token") && localStorage.getItem("user"))
+        fetchPosts()
   },[])
 
 const likepost = (id) =>
