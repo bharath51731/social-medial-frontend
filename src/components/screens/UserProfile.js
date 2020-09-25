@@ -37,6 +37,9 @@ const fetchPosts = () =>
     .then(data => {
     
     setLoad(false);
+    setFload(false);
+    setUload(false);
+
     if(data.user == null)
     {
     setFetch(true)
@@ -47,7 +50,11 @@ const fetchPosts = () =>
       
       }
     )
-    .catch(err=>setLoad(false))
+    .catch(err=>{
+      setLoad(false)
+      setFload(false);
+      setUload(false);
+      })
   }
 
   useEffect(()=>{
@@ -74,7 +81,7 @@ const fetchPosts = () =>
     // data.user.followers.push(state._id);
    
     // setData(data);
-    setFload(false);
+    // setFload(false);
   })
   .catch(err=>setFload(false))
   }
@@ -96,7 +103,7 @@ const fetchPosts = () =>
     fetchPosts();
     // data = data.user.followers.filter(d => d._id !== state._id);
     // setData(data);
-    setUload(false);
+    // setUload(false);
   })
   .catch(err=>setUload(false))
   }

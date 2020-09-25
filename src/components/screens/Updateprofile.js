@@ -98,11 +98,17 @@ const fetchres= () =>
     .then(data => {
       
       setLoad(false);
+      setnLoad(false);
+      setiLoad(false);
+      setriLoad(false);
       setPosts(data.mypost)
       setuser(data.user)
     })
     .catch(err=>{
       setLoad(false)
+      setnLoad(false);
+      setiLoad(false);
+      setriLoad(false);
       M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
     })
   }
@@ -134,10 +140,10 @@ const fetchres= () =>
     )
     .then(res=>res.json())
     .then(data => {
-      setnLoad(false);
+      // setnLoad(false);
       fetchres();
       setName("");
-      M.toast({html: 'Name Changed',classes:"#43a047 green darken-1"})
+      // M.toast({html: 'Name Changed',classes:"#43a047 green darken-1"})
      })
     .catch(err=>{
       setnLoad(false)
@@ -175,10 +181,10 @@ const fetchres= () =>
           })
           .then(res => res.json())
           .then(data => {
-            setiLoad(false)
+            // setiLoad(false)
             fetchres();
             setImage("");
-            M.toast({html: 'Profile Picture Updated',classes:"#43a047 green darken-1"})
+            // M.toast({html: 'Profile Picture Updated',classes:"#43a047 green darken-1"})
 
           })
           .catch(err =>{ setiLoad(false)
@@ -204,9 +210,9 @@ const fetchres= () =>
     })
     .then(res => res.json())
     .then(data => {
-      setriLoad(false)
+      // setriLoad(false)
       fetchres()
-      M.toast({html: 'Profile Picture Removed',classes:"#43a047 green darken-1"})
+      // M.toast({html: 'Profile Picture Removed',classes:"#43a047 green darken-1"})
     })
     .catch(err => {
       setriLoad(false)

@@ -57,17 +57,7 @@ const Profile = () =>
   const [posts,setPosts] = useState([]);
   const {state,dispatch} = useContext(UserContext)
   const [user,setuser] = useState(null)
-  const [pass,setPass] = useState("")
-  const [newpass,setnewPass] = useState("")
-  const [delpass,setdelPass] = useState("")
-  const [image,setImage] = useState("")
-  const [name,setName]  = useState("")
   
-  const [nload,setnLoad] = useState(false)
-  const [pload,setpLoad] = useState(false)
-  const [iload,setiLoad] = useState(false)
-  const [riload,setriLoad] = useState(false)
-  const [delload,setdelLoad] = useState(false)
   const [load,setLoad]= useState(true);
   const [list,setList] = useState([])
   const [heading,setHeading] = useState("")

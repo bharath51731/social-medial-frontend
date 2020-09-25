@@ -130,7 +130,7 @@ const Signup = () =>
       />
 
 {!loading ? <button type="submit" disabled={loading} className="btn  #64b5f6 blue darken-1" >
-                 signup
+                 sign up
             </button> :  <CircularProgress className="loadingcolor"   />}
       </form>
       
