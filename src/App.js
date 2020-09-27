@@ -8,7 +8,6 @@ import UpdateProfile from './components/screens/Updateprofile';
 import Signin from './components/screens/Signin';
 import Signup from './components/screens/Signup';
 import Userprofile from './components/screens/UserProfile';
-import CreatePost from './components/screens/Createpost';
 import Myfollowings from './components/screens/Myfollowingposts';
 import Reload from './components/screens/reload';
 import Myposts from './components/screens/Mypots';
@@ -41,7 +40,6 @@ const Routing = () =>{
    <Route exact  path="/updateprofile" component={UpdateProfile} />
    <Route exact path="/signin" component={Signin} />
    <Route exact path="/signup" component={Signup} />
-   <Route exact path="/createpost" component={CreatePost} />
    <Route exact path="/profile/:id" component={Userprofile} />
    <Route exact path="/myfollowing" component={Myfollowings} />
    <Route path="/reload" component={Reload} />
