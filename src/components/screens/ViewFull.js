@@ -13,6 +13,7 @@ const ViewFull = () =>
     const [data,setData] = useState(null)
     const {state,dispatch} = useContext(UserContext);
     const [load,setLoad]= useState(true);
+    
 
     if(!localStorage.getItem("token") || !localStorage.getItem("user"))
   {
@@ -37,9 +38,12 @@ const fetchDetails = () =>
     .then(res=>res.json())
     .then(data => {
       setLoad(false);
+    
       setData(data.posts[0])
     })
-    .catch(err=>setLoad(false))
+    .catch(err=>{
+      
+      setLoad(false)})
     }
     useEffect(()=>{
        fetchDetails()
@@ -153,6 +157,7 @@ const fetchDetails = () =>
 
   const deletecomment = (cid,pid) =>
   {
+
       
     swal({
       title: "Are you sure?",
@@ -164,6 +169,8 @@ const fetchDetails = () =>
     .then((willDelete) => {
 
     if(willDelete)
+    {
+     
     fetch(url+`deletecomment`,{
       method:"delete",
       headers:{
@@ -178,12 +185,16 @@ const fetchDetails = () =>
   .then(res=>res.json())
   .then(result=>{
     fetchDetails()
-    M.toast({html: 'Comment Deleted',classes:"#43a047 green darken-1"})
+    // M.toast({html: 'Comment Deleted',classes:"#43a047 green darken-1"})
 }).catch(err=>{
+ 
     console.log(err)
 })
+    }
     })
-    .catch(err=>console.log(err))
+    .catch(err=>{
+     
+      console.log(err)})
 }
     return(
       <>

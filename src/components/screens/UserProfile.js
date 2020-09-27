@@ -154,8 +154,8 @@ const fetchPosts = () =>
         <div style={{display:"flex",justifyContent:"space-between",width:"108%"}}>
            <h6>{data.user.followers.length} followers</h6>
            <h6>{data.user.following.length} following</h6>
-          {!data.user.followers.includes(state._id)?<h6>{data.posts.length} posts</h6>:
-           data.posts.length > 0 ?  <Link to={`/myposts/${data.user._id}`}><h6>{data.posts.length} posts</h6></Link> : <h6>{data.posts.length} Posts</h6>} 
+          {/* {!data.user.followers.includes(state._id)?<h6>{data.posts.length} posts</h6>: */}
+           {data.posts.length > 0 ?  <Link to={`/myposts/${data.user._id}`}><h6>{data.posts.length} posts</h6></Link> : <h6>{data.posts.length} Posts</h6>}
          </div>
     </div>
     </div>

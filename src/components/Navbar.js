@@ -62,8 +62,7 @@ const postDetails = ()=>{
 
   posttext = posttext.trim();
 
-  document.getElementById('bodyc').value="";
-  document.getElementById('imgc').value="";
+ 
   
 
   if( !image && !posttext)
@@ -101,6 +100,7 @@ const postDetails = ()=>{
                if(data.error)
                {
                  M.toast({html: data.error,classes:"#43a047 red darken-1"})
+                 clear();
                }
                else
                {
@@ -115,7 +115,8 @@ const postDetails = ()=>{
              .catch(err => setLoading(false))
         else
         {
-          setLoading(false);
+        setLoading(false);
+        clear();
         M.toast({html: "something went wrong",classes:"#43a047 red darken-1"})
         }
          
@@ -124,11 +125,11 @@ const postDetails = ()=>{
     })
     .catch(err=>{
       setLoading(false);
+      clear();
       M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
     })
     else
-
-    fetch(u+"createpost/",{
+     fetch(u+"createpost/",{
         method:"post",
         headers:{
           "Content-Type":"application/json",
@@ -146,6 +147,7 @@ const postDetails = ()=>{
           if(data.error)
           {
             M.toast({html: data.error,classes:"#c62828 red darken-3"})
+            clear();
           }
           else
           {
@@ -157,7 +159,8 @@ const postDetails = ()=>{
         
         })
         .catch(err => { 
-          setLoading(false)
+          setLoading(false);
+          clear();
           M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
         })
 
