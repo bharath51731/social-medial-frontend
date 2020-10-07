@@ -219,7 +219,7 @@ return(
                
                
               {/* <h6>{data.title}</h6> */}
-                 <p>{data.body}</p>
+                 <p style={{overflowWrap:'break-word'}}>{data.body}</p>
                  
                  <br />
           <div style={{display:'flex',flexDirection:'row'}}>

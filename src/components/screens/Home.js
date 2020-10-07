@@ -163,7 +163,7 @@ return(
         </div> : null}
         <div className="card-content">            
       {/* <h6>{data.title}</h6> */}
-         <p >{data.body}</p>
+         <p style={{overflowWrap: 'break-word'}}>{data.body}</p>
           <br />
           <div style={{display:'flex',flexDirection:'row',margin:0,padding:0}}>
          {!data.likes.includes(state._id) ? 

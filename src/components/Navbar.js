@@ -104,7 +104,7 @@ const postDetails = ()=>{
                }
                else
                {
-                 M.toast({html: 'Post created Succesfully',classes:"#43a047 green darken-1"})
+                 M.toast({html: 'Post Created Succesfully',classes:"#43a047 green darken-1"})
                  M.Modal.getInstance(post.current).close();
                  clear();
                  history.push('/reload')
@@ -151,7 +151,7 @@ const postDetails = ()=>{
           }
           else
           {
-            M.toast({html: 'Post created Successfully',classes:"#43a047 green darken-1"})
+            M.toast({html: 'Post Created Successfully',classes:"#43a047 green darken-1"})
             M.Modal.getInstance(post.current).close()
             clear();
             history.push('/reload')

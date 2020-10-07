@@ -230,7 +230,7 @@ const fetchDetails = () =>
                   <div className="card-content">
                            
                    {/* <h6>{data.title}</h6> */}
-                   <p>{data.body}</p>
+                   <p style={{overflowWrap: 'break-word'}}>{data.body}</p>
   
                    <br />
           <div style={{display:'flex',flexDirection:'row'}}>
@@ -287,7 +287,7 @@ const fetchDetails = () =>
         <h5 style={{marginLeft:6,fontSize:15,marginBottom:6}}>{data.comments[data.comments.length-i-1].postedBy.name}</h5></div></Link>
                     
                    
-                     <div style={{marginLeft:40}}> 
+                     <div style={{marginLeft:40,overflowWrap: 'break-word'}} > 
                      {data.comments[data.comments.length-i-1].text}
                      </div>
                      

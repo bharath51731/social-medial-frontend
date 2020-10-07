@@ -50,7 +50,7 @@ const Signin = () =>
      dispatch({type:"USER",payload:data.user})
     
     
-    M.toast({html: 'successfully Signed in',classes:"#43a047 green darken-1"})
+    M.toast({html: 'Successfully Signed in',classes:"#43a047 green darken-1"})
     
     history.push('/')
     }
