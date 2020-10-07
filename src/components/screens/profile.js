@@ -134,11 +134,12 @@ setList(user.following)
         src={user ? user.pic:""}
         />
          <button 
-      style={{marginBottom:5,marginLeft:25,color:'white',backgroundColor:'#0080ff',border:'none',width:'120px',height:'40px',borderRadius:'2px'}}
-      onClick={()=>history.push('/updateprofile')}
+        
+         style={{marginBottom:5,marginLeft:25,color:'white',backgroundColor:'#0080ff',border:'none',width:'120px',height:'40px',borderRadius:'2px',cursor:'pointer'}}
+         onClick={()=>history.push('/updateprofile')}
       
       >
-        <Link style={{color:'white'}}>Edit Profile</Link></button>
+        Edit Profile</button>
        </div>
       
         <div >

@@ -250,7 +250,7 @@ const fetchDetails = () =>
                    makeComment(e.target[0].value,data._id)
                    e.target[0].value=""
                    }}>
-                  <input type="text" placeholder="Add a comment" required /> 
+                  <input type="text" placeholder="Add a comment" maxlength="1000" required /> 
                   <button type="submit" class="btn" type="submit" name="action">
                     Comment
                       <i class="material-icons right">send</i>

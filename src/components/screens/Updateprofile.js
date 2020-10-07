@@ -182,8 +182,9 @@ const fetchres= () =>
           .then(res => res.json())
           .then(data => {
             // setiLoad(false)
-            fetchres();
             setImage("");
+            fetchres();
+            
             // M.toast({html: 'Profile Picture Updated',classes:"#43a047 green darken-1"})
 
           })

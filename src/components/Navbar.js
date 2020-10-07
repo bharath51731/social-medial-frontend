@@ -332,13 +332,14 @@ const clear = () =>{
              {!loading ? <button disabled={loading} className="btn   #64b5f6 blue darken-1" onClick={()=>postDetails()}>
              create post
            </button> :  <CircularProgress size={30} className="loadingcolor"  />}
-           <button style={{marginLeft:5}}  className="btn  #64b5f6 red darken-1"
+
+           {/* <button style={{marginLeft:5}}  className="btn  #64b5f6 red darken-1"
             onClick={()=>{
              clear();
            }}>
              Clear All
             </button>
-             
+              */}
     </div>
     
   </div>
