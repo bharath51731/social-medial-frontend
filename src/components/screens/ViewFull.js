@@ -42,7 +42,7 @@ const fetchDetails = () =>
     
       setData(data.posts[0]);
       setComments(data.posts[0].comments);
-      console.log("comments=",data.posts[0].comments);
+     
     })
     .catch(err=>{
       
@@ -115,7 +115,7 @@ const fetchDetails = () =>
       })
   }).then(res=>res.json())
   .then(result=>{
-    console.log("commentres=",result);
+   
     // setComments(result.comments)
      fetchDetails()
     
@@ -288,16 +288,14 @@ const fetchDetails = () =>
 {state._id == comments[comments.length-i-1].postedBy._id ? <i className="material-icons" style={{float:"right",margin:5,color:'grey'}} 
                      onClick={()=>deletecomment(comments[comments.length-i-1]._id,data._id)}
                      >clear</i> : null}
- 
+ <Link to={comments[comments.length-i-1].postedBy._id !== state._id?"/profile/"+comments[comments.length-i-1].postedBy._id :"/profile"  }>
                      <div style={{ display: 'flex'}}>
                       
-                     
-                   
                     <img 
                      style={{width:'30px',height:'30px',borderRadius:'30px',backgroundColor:'black',marginTop:10,marginLeft:5}} 
                      src={comments[comments.length-i-1].postedBy.pic} />
-                       <Link to={comments[comments.length-i-1].postedBy._id !== state._id?"/profile/"+comments[comments.length-i-1].postedBy._id :"/profile"  }>
-                    <h5 style={{marginLeft:6,fontSize:15,marginBottom:6}}>{comments[comments.length-i-1].postedBy.name}</h5></Link></div>
+                       
+                    <h5 style={{marginLeft:6,fontSize:15,marginBottom:6}}>{comments[comments.length-i-1].postedBy.name}</h5></div></Link>
                     
                     <div style={{marginLeft:40,overflowWrap: 'break-word'}} > 
                      {comments[comments.length-i-1].text}</div>
