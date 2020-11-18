@@ -13,6 +13,7 @@ const ViewFull = () =>
     const [data,setData] = useState(null)
     const {state,dispatch} = useContext(UserContext);
     const [load,setLoad]= useState(true);
+    const [comments,setComments] = useState([]);
     
 
     if(!localStorage.getItem("token") || !localStorage.getItem("user"))
@@ -39,7 +40,9 @@ const fetchDetails = () =>
     .then(data => {
       setLoad(false);
     
-      setData(data.posts[0])
+      setData(data.posts[0]);
+      setComments(data.posts[0].comments);
+      console.log("comments=",data.posts[0].comments);
     })
     .catch(err=>{
       
@@ -112,6 +115,8 @@ const fetchDetails = () =>
       })
   }).then(res=>res.json())
   .then(result=>{
+    console.log("commentres=",result);
+    // setComments(result.comments)
      fetchDetails()
     
   }).catch(err=>{
@@ -184,7 +189,9 @@ const fetchDetails = () =>
   })
   .then(res=>res.json())
   .then(result=>{
-    fetchDetails()
+    // fetchDetails();
+    let newcomments = comments.filter(i => i._id != cid);
+    setComments(newcomments);
     // M.toast({html: 'Comment Deleted',classes:"#43a047 green darken-1"})
 }).catch(err=>{
  
@@ -264,40 +271,48 @@ const fetchDetails = () =>
                 
               }
              
-            <h4 style={{marginLeft:20}}>Comments({data.comments.length})</h4>
+            
               {/* <hr style={{margin:10}} /> */}
               
             <div >
-             {data.comments.map((cont,i)=>{
-                 return(
-                  <div key={i} className="card home-card" 
+            <div  className="card home-card" 
                   style={{minWidth:'600px',maxWidth:'600px'}}   
                   >
-                    {state._id == data.comments[data.comments.length-i-1].postedBy._id ? <i className="material-icons" style={{
-                                        float:"right",
-                                        margin:5,
-                                        color:'grey'
-                                    }} 
-                                    onClick={()=>deletecomment(data.comments[data.comments.length-i-1]._id,data._id)}
-                                    >clear</i> : null}
-<Link to={data.comments[data.comments.length-i-1].postedBy._id !== state._id?"/profile/"+data.comments[data.comments.length-i-1].postedBy._id :"/profile"  }>
-<div style={{ display: 'flex'}}>
-
-        <img  style={{width:'30px',height:'30px',borderRadius:'30px',backgroundColor:'black',marginTop:10,marginLeft:5}} src={data.comments[data.comments.length-i-1].postedBy.pic} />
-        <h5 style={{marginLeft:6,fontSize:15,marginBottom:6}}>{data.comments[data.comments.length-i-1].postedBy.name}</h5></div></Link>
-                    
+                    <h4 class="brand-logo" style={{marginLeft:20}}>Comments({comments.length})</h4>
+                   {comments.length>0 ? <hr /> : null} 
+             {comments.map((cont,i)=>{
+                 return(
+                 
                    
-                     <div style={{marginLeft:40,overflowWrap: 'break-word'}} > 
-                     {data.comments[data.comments.length-i-1].text}
-                     </div>
+                     <div>
+{state._id == comments[comments.length-i-1].postedBy._id ? <i className="material-icons" style={{float:"right",margin:5,color:'grey'}} 
+                     onClick={()=>deletecomment(comments[comments.length-i-1]._id,data._id)}
+                     >clear</i> : null}
+ 
+                     <div style={{ display: 'flex'}}>
+                      
                      
+                   
+                    <img 
+                     style={{width:'30px',height:'30px',borderRadius:'30px',backgroundColor:'black',marginTop:10,marginLeft:5}} 
+                     src={comments[comments.length-i-1].postedBy.pic} />
+                       <Link to={comments[comments.length-i-1].postedBy._id !== state._id?"/profile/"+comments[comments.length-i-1].postedBy._id :"/profile"  }>
+                    <h5 style={{marginLeft:6,fontSize:15,marginBottom:6}}>{comments[comments.length-i-1].postedBy.name}</h5></Link></div>
                     
-                    </div>
+                    <div style={{marginLeft:40,overflowWrap: 'break-word'}} > 
+                     {comments[comments.length-i-1].text}</div>
+                     <br />
+                     {i!== comments.length-1 ?<hr />: null }
+                     
+                      </div>
+                    
+                  
                  )
                  
                 
                  
              })}
+              </div>
              </div>
             
            
@@ -316,4 +331,25 @@ export default ViewFull;
 
 // style={{minWidth:'600px',maxWidth:'600px',marginLeft:40,borderRadius:10,justifyContent:'center'}}
 // style={{float:'left',marginLeft:30}}
+
+
+
+
+// {state._id == data.comments[data.comments.length-i-1].postedBy._id ? <i className="material-icons" style={{
+//   float:"right",
+//   margin:5,
+//   color:'grey'
+// }} 
+// onClick={()=>deletecomment(data.comments[data.comments.length-i-1]._id,data._id)}
+// >clear</i> : null}
+// <Link to={data.comments[data.comments.length-i-1].postedBy._id !== state._id?"/profile/"+data.comments[data.comments.length-i-1].postedBy._id :"/profile"  }>
+// <div style={{ display: 'flex'}}>
+
+// <img  style={{width:'30px',height:'30px',borderRadius:'30px',backgroundColor:'black',marginTop:10,marginLeft:5}} src={data.comments[data.comments.length-i-1].postedBy.pic} />
+// <h5 style={{marginLeft:6,fontSize:15,marginBottom:6}}>{data.comments[data.comments.length-i-1].postedBy.name}</h5></div></Link>
+
+
+// <div style={{marginLeft:40,overflowWrap: 'break-word'}} > 
+// {data.comments[data.comments.length-i-1].text}
+// </div>
 

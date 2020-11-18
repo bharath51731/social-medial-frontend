@@ -142,7 +142,7 @@ const fetchres= () =>
     .then(data => {
       // setnLoad(false);
       fetchres();
-      setName("");
+      // setName("");
       // M.toast({html: 'Name Changed',classes:"#43a047 green darken-1"})
      })
     .catch(err=>{
