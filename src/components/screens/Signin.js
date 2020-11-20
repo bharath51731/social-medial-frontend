@@ -13,6 +13,11 @@ const Signin = () =>
   let [password,setPassword] = useState("");
   let [loading,setLoading] = useState(false);
 
+
+if(localStorage.getItem("token") && localStorage.getItem("user"))
+  {
+   history.push('/');
+  }
   
   const login =  (e) =>
   {
