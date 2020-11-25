@@ -66,7 +66,7 @@ const postDetails = ()=>{
   
 
   if( !image && !posttext)
-  return  M.toast({html: "please fill atleast one field",classes:"#43a047 red darken-1"})
+  return  M.toast({html: "post cannot be empty",classes:"#43a047 red darken-1"})
     const data = new FormData()
     data.append("file",postimage)
     data.append("upload_preset","social-app")
@@ -312,7 +312,7 @@ const clear = () =>{
                     }
                     }
             >clear</i></Link>
-      <h4>Create Post</h4>
+      {/* <h4>Post</h4> */}
 
 <textarea id="bodyc" style={style} onChange={(e)=>setBody(e.target.value)} placeholder="Write Something Here!!" maxlength="1000">
                 {body}
@@ -330,7 +330,7 @@ const clear = () =>{
              </div>
              </div>
              {!loading ? <button disabled={loading} className="btn   #64b5f6 blue darken-1" onClick={()=>postDetails()}>
-             create post
+              Post
            </button> :  <CircularProgress size={30} className="loadingcolor"  />}
 
            {/* <button style={{marginLeft:5}}  className="btn  #64b5f6 red darken-1"
