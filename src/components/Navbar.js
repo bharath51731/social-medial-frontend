@@ -313,13 +313,13 @@ const clear = () =>{
                     }
             >clear</i></Link>
       
-
+           <h4>POST</h4>
 <textarea id="bodyc" style={style} onChange={(e)=>setBody(e.target.value)} placeholder="Write Something Here!!" maxlength="1000">
                 {body}
             </textarea>
      <div className="file-field input-field">
              <div className="btn #64b5f6 blue darken-1">
-                 <span>Uplaod Image</span>
+                 <span>Upload Image</span>
                  <input type="file"
                  accept="image/*"   
                  onChange={(e)=>setImage(e.target.files[0])}/>
