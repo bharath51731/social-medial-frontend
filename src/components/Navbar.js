@@ -312,7 +312,7 @@ const clear = () =>{
                     }
                     }
             >clear</i></Link>
-      {/* <h4>Post</h4> */}
+      
 
 <textarea id="bodyc" style={style} onChange={(e)=>setBody(e.target.value)} placeholder="Write Something Here!!" maxlength="1000">
                 {body}
