@@ -240,15 +240,15 @@ const clear = () =>{
       <Link style={{color:colour}} className="brand-logo" to="/">We Connect</Link>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger" style={{color:colour}}><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down" style={{backgroundColor:navcolor,width:'100'}} >
-      <li key="1" ><Link style={{color:colour}} to={state ? "/" :"/signin"}>Sign in</Link></li>
-      <li key="2"><Link style={{color:colour}} to="/signup">Sign up</Link></li>
+      <li key="1" ><Link style={{color:colour}} to={state ? "/" :"/signin"}>Signin</Link></li>
+      <li key="2"><Link style={{color:colour}} to="/signup">Signup</Link></li>
       </ul>
       </div>
       </nav>
       
       <ul class="sidenav" id="mobile-demo" ref={side}>
-      <li key="1"><Link  style={{color:sidecolour}} to={state ? "/" :"/signin"}>Sign in</Link></li>
-      <li key="2"><Link style={{color:sidecolour}}  to="/signup">Sign up</Link></li>
+      <li key="1"><Link  style={{color:sidecolour}} to={state ? "/" :"/signin"}>Signin</Link></li>
+      <li key="2"><Link style={{color:sidecolour}}  to="/signup">Signup</Link></li>
       </ul>
       </>
      ]

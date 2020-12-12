@@ -132,23 +132,23 @@ const fetchPosts = () =>
      
       {!data.user.followers.includes(state._id) ?
      
-      <>{!fload ? <button disabled={fload} style={{
+      <>{ <button disabled={fload} style={{
                        margin:"10px",
                        textTransform:'capitalize',
                        fontSize:17
                    }} className="btn  #64b5f6 blue darken-1"
                     onClick={()=>followuser()}>
                       Follow
-                  </button> :<CircularProgress className="loadingcolor"  size={30} />} </>
+                  </button> } </>
                     :
-                    <>{!uload ? <button disabled={uload} style={{
+                    <>{ <button disabled={uload} style={{
                       margin:"10px",
                       textTransform:'capitalize',
                       fontSize:17
                   }} className="btn  #64b5f6 blue darken-1"
                    onClick={()=>unfollowuser()}>
                      unFollow
-                 </button> :<CircularProgress className="loadingcolor"  size={30} />} </>}
+                 </button> } </>}
                     
         
         <div style={{display:"flex",justifyContent:"space-between",width:"108%"}}>
