@@ -177,4 +177,3 @@ const fetchPosts = () =>
   )
 }
 export default UserProfile;
-

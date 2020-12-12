@@ -97,18 +97,15 @@ const fetchres= () =>
     .then(res=>res.json())
     .then(data => {
       
+      
+
       setLoad(false);
-      setnLoad(false);
-      setiLoad(false);
-      setriLoad(false);
-      setPosts(data.mypost)
+     
       setuser(data.user)
     })
     .catch(err=>{
       setLoad(false)
-      setnLoad(false);
-      setiLoad(false);
-      setriLoad(false);
+      
       M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
     })
   }
@@ -140,9 +137,11 @@ const fetchres= () =>
     )
     .then(res=>res.json())
     .then(data => {
-      // setnLoad(false);
+      console.log(data);
+    
+      setnLoad(false);
       fetchres();
-      // setName("");
+      setName("");
       // M.toast({html: 'Name Changed',classes:"#43a047 green darken-1"})
      })
     .catch(err=>{
@@ -181,10 +180,10 @@ const fetchres= () =>
           })
           .then(res => res.json())
           .then(data => {
-            // setiLoad(false)
+           
             setImage("");
             fetchres();
-            
+             setiLoad(false)
             // M.toast({html: 'Profile Picture Updated',classes:"#43a047 green darken-1"})
 
           })
@@ -211,8 +210,9 @@ const fetchres= () =>
     })
     .then(res => res.json())
     .then(data => {
-      // setriLoad(false)
+      
       fetchres()
+      setriLoad(false)
       // M.toast({html: 'Profile Picture Removed',classes:"#43a047 green darken-1"})
     })
     .catch(err => {

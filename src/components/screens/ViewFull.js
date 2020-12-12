@@ -67,8 +67,8 @@ const fetchDetails = () =>
     .then(res=>res.json())
     .then(data =>
        {
-        
-        fetchDetails()
+      
+        setData(data);
 
         
     })
@@ -90,8 +90,8 @@ const fetchDetails = () =>
     .then(res=>res.json())
     .then(data =>
       {
-
-       fetchDetails()
+      
+      setData(data);
 
        
    })
@@ -116,8 +116,10 @@ const fetchDetails = () =>
   }).then(res=>res.json())
   .then(result=>{
    
-    // setComments(result.comments)
-     fetchDetails()
+  
+    setComments(result.comments);
+     
+    
     
   }).catch(err=>{
       console.log(err)
@@ -189,10 +191,11 @@ const fetchDetails = () =>
   })
   .then(res=>res.json())
   .then(result=>{
-    // fetchDetails();
-    let newcomments = comments.filter(i => i._id != cid);
-    setComments(newcomments);
-    // M.toast({html: 'Comment Deleted',classes:"#43a047 green darken-1"})
+    setComments(result.comments);
+   
+    // let newcomments = comments.filter(i => i._id != cid);
+    // setComments(newcomments);
+    M.toast({html: 'Comment Deleted',classes:"#43a047 green darken-1"})
 }).catch(err=>{
  
     console.log(err)
