@@ -3,7 +3,6 @@ import {Link,useHistory} from 'react-router-dom';
 import M from 'materialize-css';
 import { CircularProgress } from "@material-ui/core";
 import {url} from '../Url';
-import {ekey,ckey} from '../Keys';
 const Signup = () =>
 {
   const history = useHistory();
@@ -45,15 +44,7 @@ const Signup = () =>
     setLoading(true);
     
 
-    fetch(`https://emailverification.whoisxmlapi.com/api/v1?apiKey=${ekey}&emailAddress=${email}`)
-    .then(res=>res.json())
-    .then(data=>{
     
-    if(data.dnsCheck === "false")
-    {
-      setLoading(false);
-      return M.toast({html: "invalid email",classes:"#43a047 red darken-1"})
-    }
     fetch(url+"signup/",{
       method:"post",
       headers:{
@@ -82,10 +73,7 @@ const Signup = () =>
        setLoading(false)
        M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
     })
-}).catch(err=>{
-    setLoading(false)
-    M.toast({html: 'Something Went Wrong',classes:"#43a047 red darken-1"})
-  })
+
 }
 
   return(
